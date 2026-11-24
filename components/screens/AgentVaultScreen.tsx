@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { css } from "@/lib/css";
-import { LogoMark } from "@/components/Logo";
 
 interface Status {
   connected: boolean;
@@ -88,15 +86,9 @@ export default function AgentVaultScreen() {
   }
 
   return (
-    <div style={css("min-height:100vh;background:#F8FAF8")}>
-      <header style={css("height:60px;border-bottom:1px solid #E8ECE8;background:#FFFFFF;display:flex;align-items:center;padding:0 28px;gap:14px")}>
-        <Link href="/" style={css("display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px;color:#202723")}><LogoMark />Launchmate</Link>
-        <span style={css("font-size:13px;color:#78817B")}>Agent Vault setup</span>
-      </header>
-
-      <main style={css("max-width:860px;margin:0 auto;padding:28px;display:flex;flex-direction:column;gap:16px")}>
+      <main style={css("max-width:860px;width:100%;padding:28px;display:flex;flex-direction:column;gap:16px;animation:lmIn .35s ease-out")}>
         <div style={css("display:flex;flex-direction:column;gap:4px")}>
-          <h1 style={css("margin:0;font-size:26px;letter-spacing:-.02em;font-weight:600")}>Domain setup with Agent Vault</h1>
+          <h1 style={css("margin:0;font-size:26px;letter-spacing:-.02em;font-weight:600")}>Domain setup</h1>
           <span style={css("font-size:14px;color:#78817B;line-height:1.5")}>Your agent signs in to your registrar account and pays for data services. It only ever handles placeholder tokens: your password and card never reach it, and nothing is paid without your approval and a hard spending limit.</span>
         </div>
 
@@ -151,6 +143,5 @@ export default function AgentVaultScreen() {
           ))}
         </section>
       </main>
-    </div>
   );
 }

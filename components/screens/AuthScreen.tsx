@@ -91,7 +91,7 @@ export default function AuthScreen({ mode, notice }: { mode: "signup" | "signin"
             <Link href={signup ? "/signin" : "/signup"} style={css("font-weight:500")}>{signup ? "Sign in" : "Create an account"}</Link>
           </span>
         </div>
-        <span style={css("font-size:12px;color:#78817B")}>Your progress saves automatically. You can leave and come back anytime.</span>
+        <span style={css("font-size:12px;color:#78817B")}>Early access · built for Nigeria · free to start</span>
       </div>
 
       <div style={css("background:#F8FAF8;border-left:1px solid #E8ECE8;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px;gap:28px;min-height:420px")}>

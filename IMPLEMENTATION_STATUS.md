@@ -4,10 +4,10 @@ Statuses: Designed · Implemented · Configured · Tested · Production verified
 
 | Feature | Status | Tested | Blocker |
 |---|---|---|---|
-| Landing page (/) | Implemented (real, no sample data; capabilities labelled Available / In progress) | Browser | – |
-| Onboarding (guided Q&A, not AI) | Real: saves the business and your answers to Neon; one business per user | Tested end to end in the browser (sign-up, onboarding, create, sign-out, sign-in, duplicate refused) | AI key for free-text understanding |
+| Landing page (/) | Real: story sections, scroll-driven 3D, FAQ; features labelled Available / In progress | Browser, every section | – |
+| Onboarding (guided flow, not AI) | Real: one question at a time, live plan and 3D plot, review step, progress saved on the device, then saved to Neon | Browser end to end (steps, skip, refresh-restore, create, redirect) | AI key for free-text understanding |
 | Overview | Real: shows your business from the database, honest next steps, no fake figures | Browser | – |
-| World, Store, Products, Orders, Finances, Agent, Activity, Permissions | Still prototype on sample data (small "Demo · sample data" pill) | Browser click-through | Replace one at a time with real data |
+| Products, storefront, orders, finances, agent | Not built. The old sample screens were deleted so nothing fake remains | – | See docs/ROADMAP.md |
 | Neon database + Drizzle schema + migration `0000` | Implemented | Migration generated; **never applied** | Needs `DATABASE_URL` |
 | Authentication (Better Auth on Neon) | Implemented end to end in code: real /signup and /signin, session guard on onboarding and dashboard | Redirects verified; sign-up needs the database | `DATABASE_URL` (Neon) + `npm run db:migrate` |
 | Business workspace API (`/api/businesses`) | Implemented | No | Needs DB + auth |

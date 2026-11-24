@@ -75,8 +75,6 @@ export default function Shell({ children, userName, business }: { children: Reac
       <main style={css("flex:1;min-width:0;display:flex;flex-direction:column")}>
         <div style={css("height:60px;border-bottom:1px solid #E8ECE8;background:#FFFFFF;display:flex;align-items:center;padding:0 28px;gap:14px;position:sticky;top:0;z-index:10")}>
           <span style={css("font-size:15px;font-weight:600")}>{title}</span>
-          <span style={css("flex:1")} />
-          <Link href="/agent" className="hv-green" style={css("font-size:13px;padding:8px 12px;border-radius:10px;background:#26734D;color:#FFFFFF;font-weight:500;white-space:nowrap")}>Ask agent</Link>
         </div>
         {children}
       </main>
