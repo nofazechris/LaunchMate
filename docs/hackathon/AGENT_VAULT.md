@@ -19,8 +19,8 @@ Real task for a merchant: **domain setup**. Launchmate's agent signs in to the m
 3. Set up the Agent Vault wallet and fund it with a few dollars of USDC/USDT/USAT on Celo; set an agent card spending rule.
 4. Create an API key (server secret) for the Playwright SDK, or connect the hosted MCP.
 
-## Open questions for organizers
-1. Is the **Self Agent ID** form field truly required on an Agent Vault entry (form flags it required; its description says only required for the Self track)?
+## Open questions for organizers (1 answered, 1 open)
+1. ~~Is the Self Agent ID form field required on an Agent Vault entry?~~ **Answered by the admins 24 Nov 2026:** not required; only for the Verified Agent Payments (Self) track. Confirmed on the platform: `loops project fields` now shows `required: false` and it is no longer in `missing`.
 2. The Agent Vault wallet is **custodial** (cannot sign ERC-8004 registration or tagged txs). Is it acceptable that x402 payments come from the Agent Vault wallet while the entry's *agent wallet* / ERC-8004 identity is a separate self-held wallet (`0x387c6EE644f472569d773a4FA9bB047007B9bB08`)?
 
 ## Evidence log
