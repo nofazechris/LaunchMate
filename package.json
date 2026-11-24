@@ -13,7 +13,9 @@
     "wallet:generate": "node scripts/generate-agent-wallet.mjs",
     "self:register": "node scripts/register-self-agent.mjs",
     "av:check": "node --env-file=.env.local scripts/agentvault-check.mjs",
-    "erc8004:register": "node --env-file=.env.local scripts/register-erc8004.mjs"
+    "erc8004:register": "node --env-file=.env.local scripts/register-erc8004.mjs",
+    "e2e:products": "bash scripts/e2e/products.sh",
+    "e2e:cleanup": "node --env-file=.env.local scripts/e2e/cleanup-test-data.mjs"
   },
   "dependencies": {
     "@agentvault/playwright": "https://app.agentvault.io/sdk/agentvault-playwright.tgz",

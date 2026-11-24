@@ -26,12 +26,12 @@ export default async function Page() {
 
   const steps: Step[] = [
     { title: "Business profile saved", note: "Your answers are stored and editable.", state: "done" },
-    { title: "Add your products", note: "Upload photos and describe your stock. Coming next.", state: "soon" },
+    { title: productCount > 0 ? `Add more products (${productCount} so far)` : "Add your products", note: "Add what you sell, with photos, prices and stock.", state: productCount > 0 ? "done" : "available", href: "/products" },
     { title: "Connect payments", note: "Take real payments through Paystack. Coming soon.", state: "soon" },
     { title: "Set up your domain", note: "Your agent signs in to your registrar through Agent Vault, without seeing your password. Early access.", state: "available", href: "/agent-vault" },
     { title: "Launch your store", note: "Publish when you are ready. Not available yet.", state: "soon" },
   ];
-  const chip = { done: ["Done", "#E9F4EE", "#1F6B43"], available: ["Early access", "#EAF2F8", "#2F6A92"], soon: ["Not yet", "#F3F5F2", "#78817B"] } as const;
+  const chip = { done: ["Done", "#E9F4EE", "#1F6B43"], available: ["Ready", "#EAF2F8", "#2F6A92"], soon: ["Not yet", "#F3F5F2", "#78817B"] } as const;
 
   return (
     <div style={css("padding:28px;display:flex;flex-direction:column;gap:16px;max-width:1100px;width:100%;animation:lmIn .35s ease-out")}>

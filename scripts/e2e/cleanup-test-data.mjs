@@ -1,0 +1,14 @@
+import { Pool } from "@neondatabase/serverless";
+const p = new Pool({ connectionString: process.env.DATABASE_URL_UNPOOLED });
+const slugs = ["prod-test-a", "prod-test-b"];
+const emails = ["lm-prod-a@example.com", "lm-prod-b@example.com"];
+const ids = (await p.query("select id from businesses where slug = any($1::text[])", [slugs])).rows.map((r) => r.id);
+let a = 0;
+if (ids.length) a += (await p.query("delete from audit_logs where business_id = any($1::uuid[]) or target_id = any($2::text[])", [ids, ids])).rowCount;
+const u = (await p.query('select id from "user" where email = any($1::text[])', [emails])).rows.map((r) => r.id);
+if (u.length) a += (await p.query("delete from audit_logs where actor_id = any($1::text[])", [u])).rowCount;
+const b = (await p.query("delete from businesses where slug = any($1::text[])", [slugs])).rowCount;
+const d = (await p.query('delete from "user" where email = any($1::text[])', [emails])).rowCount;
+const left = (await p.query('select (select count(*)::int from "user") users, (select count(*)::int from businesses) businesses, (select count(*)::int from products) products, (select count(*)::int from product_assets) assets, (select count(*)::int from audit_logs) audit')).rows[0];
+console.log(`removed: ${b} businesses, ${a} audit rows, ${d} users | remaining: ${JSON.stringify(left)}`);
+await p.end();

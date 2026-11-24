@@ -1,10 +1,13 @@
 import { sql } from "drizzle-orm";
 import {
-  bigint, boolean, index, integer, jsonb, pgEnum, pgTable, text, timestamp, uniqueIndex, uuid,
+  bigint, boolean, customType, index, integer, jsonb, pgEnum, pgTable, text, timestamp, uniqueIndex, uuid,
 } from "drizzle-orm/pg-core";
 import { user } from "./auth-schema";
 
 export * from "./auth-schema";
+
+/** Raw bytes (Postgres bytea). Used for product photos until they move to object storage. */
+const bytea = customType<{ data: Buffer; driverData: Buffer }>({ dataType: () => "bytea" });
 
 /*
  * Money rule: every amount is an integer in MINOR units (kobo, cents) with an explicit
@@ -191,7 +194,10 @@ export const productAssets = pgTable("product_assets", {
   id: id(),
   productId: uuid("product_id").references(() => products.id, { onDelete: "cascade" }),
   businessId: uuid("business_id").notNull().references(() => businesses.id, { onDelete: "cascade" }),
-  storageKey: text("storage_key").notNull(), // original object, never overwritten
+  /** "db:<id>" while bytes live in `data`; becomes an object-storage key if/when we move to R2. */
+  storageKey: text("storage_key").notNull(),
+  data: bytea("data"),
+  sortOrder: integer("sort_order").notNull().default(0),
   derivatives: jsonb("derivatives").$type<Record<string, string>>().notNull().default(sql`'{}'::jsonb`),
   mimeType: text("mime_type").notNull(),
   sizeBytes: integer("size_bytes").notNull(),

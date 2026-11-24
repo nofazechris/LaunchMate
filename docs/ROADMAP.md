@@ -3,12 +3,12 @@
 Honest as of 24 Nov 2026. "Real" means backed by the database and tested end to end.
 
 ## Real today
-Landing page · account sign-up/sign-in · guided onboarding (saves progress on the device, then the business and your answers to the database) · Overview from real data · Domain setup with Agent Vault (owner token; needs a stored login and funded wallet to do real work) · session guards · tenant-safe business API.
+Landing page · account sign-up/sign-in · guided onboarding (saves progress on the device, then the business and your answers to the database) · Overview from real data · **Products** (add, edit, photos, stock with history, publish/archive/delete) · Domain setup with Agent Vault (owner token; needs a stored login and funded wallet to do real work) · session guards · tenant-safe business API.
 
 ## A. The product people will use (in order)
 | # | Piece | Size | Needs from the owner |
 |---|---|---|---|
-| 1 | **Products**: add/edit with photos, price, stock; list and search | L | Object storage (Cloudflare R2 or similar) credentials |
+| 1 | **Products**: add/edit with photos, price, stock; list and search. **Done (24 Nov)**: photos are stored in the database, resized in the browser (about 20 to 300 KB each). Move to R2 when volume grows or the public storefront needs a CDN | done | R2 credentials, later |
 | 2 | **Public storefront** at `/s/<slug>` (home, product page, cart); later `<slug>.yourdomain` | L | The domain and Vercel wildcard setup |
 | 3 | **Checkout and payments** with webhook-verified orders and stock deduction | L | Paystack account and keys |
 | 4 | **Orders and fulfilment** screen, customer records | M | – |
