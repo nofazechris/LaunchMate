@@ -9,10 +9,11 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "typecheck": "tsc --noEmit",
-    "test": "node --test tests/*.test.ts",
+    "test": "node --env-file-if-exists=.env.local --test --test-timeout=60000 tests/*.test.ts",
     "wallet:generate": "node scripts/generate-agent-wallet.mjs",
     "self:register": "node scripts/register-self-agent.mjs",
-    "av:check": "node --env-file=.env.local scripts/agentvault-check.mjs"
+    "av:check": "node --env-file=.env.local scripts/agentvault-check.mjs",
+    "erc8004:register": "node --env-file=.env.local scripts/register-erc8004.mjs"
   },
   "dependencies": {
     "@celo/attribution-tags": "^0.5.0",

@@ -1,0 +1,11 @@
+{
+  "_comment": "Copy to config/agentvault-site.json and fill in for the ONE real site whose login you stored in Agent Vault. Selectors come from inspecting that site's sign-in page. No secrets belong here.",
+  "loginUrl": "https://example-registrar.com/login",
+  "identifierSelector": "#email",
+  "passwordSelector": "#password",
+  "submitSelector": "button[type=submit]",
+  "successSelector": "[data-testid=account-menu]",
+  "failureSelector": ".error, [role=alert]",
+  "identifier": "email",
+  "timeoutMs": 20000
+}
