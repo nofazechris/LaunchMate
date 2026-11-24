@@ -17,9 +17,9 @@ Statuses: Designed · Implemented · Configured · Tested · Production verified
 | Domains | Not started | – | Registrar access |
 | Finance | Not started | – | – |
 | ERC-8004 | Not started | – | Enrolment, wallet, gas |
-| Self Agent ID | Not started | – | Owner verification |
+| Self Agent ID (service gate) | Implemented | Denied path tested (mainnet reads); served path not | Owner passport scan to create a registered agent |
 | Agent Vault | Not started | – | Account/SDK access |
-| x402 | Not started | – | Wallet, PayTo registration |
+| x402 seller | Implemented (`withX402`) | Not exercised | PayTo address, facilitator API key, funded buyer |
 | Celo attribution | Implemented | Unit-tested (signed tx calldata decoded); not verified on mainnet | First mainnet tx (tag itself confirmed by platform) |
 | Textile FX / Altana | Deferred | – | – |
 

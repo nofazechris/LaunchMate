@@ -17,9 +17,9 @@ Status words: **Not started · In progress · Implemented (untested) · Verified
 ## P1 — Self Agent ID (primary)
 - [x] Docs read (overview, registration modes, supported countries) — **Done; 3 open questions in SELF_AGENT_ID.md**
 - [ ] Human-owner verification established — **Not started** (owner's own ID)
-- [ ] Protected service whose access decision checks Self status — **Not started**
-- [ ] x402 payment gating — **Not started**
-- [ ] Allowed case tested — **Not started**; denied case tested — **Not started**
+- [x] Protected service whose access decision checks Self status — **Implemented** (`lib/self/gate.ts`, `app/api/services/enrich-product`); denied path tested on mainnet, served path untested
+- [~] x402 payment gating — **Implemented (`withX402`, Celo facilitator), never exercised**: needs PayTo address, facilitator API key, funded buyer
+- [ ] Allowed case tested — **Not started** (needs a registered, human-verified agent); [x] denied case tested — **Done** (4 tests, real mainnet registry reads)
 
 ## P2 — Agent Vault (secondary)
 - [ ] Docs read: https://docs.agentvault.io/ — **Not started**
