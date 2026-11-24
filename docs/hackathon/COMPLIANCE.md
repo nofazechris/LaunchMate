@@ -6,7 +6,7 @@ Status words: **Not started · In progress · Implemented (untested) · Verified
 - [x] Public GitHub repo created and resolving — https://github.com/nofazechris/LaunchMate (checked 24 Nov 2026)
 - [x] Event page reviewed — **Done 24 Nov 2026** (no event skill/install command is published on the page)
 - [x] Hackathon enrolment — **Done by owner (solo dev)**
-- [x] Attribution tag obtained — `celo_b02f2c0e5298` (see ATTRIBUTION.md; code does not match repo-derived value, to confirm)
+- [x] Attribution tag obtained — `celo_b02f2c0e5298` (confirmed against the platform via `loops project get`)
 - [x] Tag wired into the single tx-construction path *before* first tx — **Implemented + unit-tested; not yet verified on mainnet**
 - [ ] Celo mainnet config (chain 42220) — **Not started**
 - [ ] Agent wallet created securely — **Not started** (owner holds keys)

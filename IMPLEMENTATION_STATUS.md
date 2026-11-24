@@ -20,7 +20,7 @@ Statuses: Designed · Implemented · Configured · Tested · Production verified
 | Self Agent ID | Not started | – | Owner verification |
 | Agent Vault | Not started | – | Account/SDK access |
 | x402 | Not started | – | Wallet, PayTo registration |
-| Celo attribution | Implemented | Unit-tested (signed tx calldata decoded); not verified on mainnet | First mainnet tx; code/repo mismatch to confirm |
+| Celo attribution | Implemented | Unit-tested (signed tx calldata decoded); not verified on mainnet | First mainnet tx (tag itself confirmed by platform) |
 | Textile FX / Altana | Deferred | – | – |
 
 Hackathon-specific status lives in `docs/hackathon/COMPLIANCE.md`.

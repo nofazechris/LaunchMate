@@ -19,8 +19,8 @@ Signs real transactions with a throwaway key through a capturing transport, pars
 ## Still to do (after the first real mainnet tx)
 Run `verifyTx({ client, hash })` against the real transaction and record the result in the log below. A unit test is not proof of on-chain attribution.
 
-## Open question: code vs repo name
-Celo's builders guide says the platform derives codes from the GitHub `owner/repo` slug (`codeFromRepo`). `nofazechris/launchmate` hashes to `celo_2590bd6b9e76`, which is **not** our code, and no obvious variant (case, URL, `.git`, hostname) reproduces `celo_b02f2c0e5298`. So the enrolment was probably registered against a different repo URL or name. Confirm the repo URL on the enrolment page matches `github.com/nofazechris/LaunchMate`. We use the issued code as-is and have not added the repo-derivation assertion because it would fail.
+## Code source (resolved 24 Nov 2026)
+`loops project get -e agents-open-for-business` (signed in) returns `celo.attributionTag: celo_b02f2c0e5298` — the platform-issued tag. Per the event skill, use exactly this tag and never derive one with `codeFromRepo`/`codeFromHostname`. (Our own repo-derived value, `celo_2590bd6b9e76`, is irrelevant and must not be used.) The platform also returns the raw `dataSuffix` bytes: `0x63656c6f5f623032663263306535323938110080218021802180218021802180218021`.
 
 ## x402
 x402 settlements on Celo currently carry no tag (the facilitator does not write them yet, per the Celo attribution docs). Register the PayTo address at hackathon registration instead.
