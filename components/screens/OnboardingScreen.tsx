@@ -7,13 +7,13 @@ import { IsoBoxes, IsoScene } from "@/components/Iso";
 import { LogoMark } from "@/components/Logo";
 import { useLaunchmate } from "@/components/LaunchmateProvider";
 
-export default function OnboardingScreen() {
+export default function OnboardingScreen({ userName }: { userName: string }) {
   const { answers: a, chat, qi, typing, draft, setDraft, startOnboarding, answer, askRevise, startBuild } = useLaunchmate();
   const bottom = useRef<HTMLDivElement>(null);
 
   // Landing here directly (or after a refresh) with nothing started: begin the conversation.
   const idle = chat.length === 0 && !typing;
-  useEffect(() => { if (idle) startOnboarding(); }, [idle, startOnboarding]);
+  useEffect(() => { if (idle) startOnboarding(userName); }, [idle, startOnboarding, userName]);
 
   useEffect(() => { bottom.current?.scrollIntoView({ behavior: "smooth", block: "end" }); }, [chat.length, typing, qi]);
 

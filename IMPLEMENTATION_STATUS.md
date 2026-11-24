@@ -4,9 +4,10 @@ Statuses: Designed · Implemented · Configured · Tested · Production verified
 
 | Feature | Status | Tested | Blocker |
 |---|---|---|---|
-| Prototype UI (all screens, static data) | Implemented | Click-through in browser | Not real product; no persistence |
+| Landing page (/) | Implemented (real, no sample data; capabilities labelled Available / In progress) | Browser | – |
+| Onboarding, build, dashboard screens | Prototype on sample data (small "Demo · sample data" pill) | Browser click-through | Replace with real data one screen at a time once the database is connected |
 | Neon database + Drizzle schema + migration `0000` | Implemented | Migration generated; **never applied** | Needs `DATABASE_URL` |
-| Authentication (Better Auth on Neon) | Implemented (server only) | No | Needs DB + `BETTER_AUTH_SECRET`; sign-up screen not wired to it |
+| Authentication (Better Auth on Neon) | Implemented end to end in code: real /signup and /signin, session guard on onboarding and dashboard | Redirects verified; sign-up needs the database | `DATABASE_URL` (Neon) + `npm run db:migrate` |
 | Business workspace API (`/api/businesses`) | Implemented | No | Needs DB + auth |
 | Tenant authz helper | Implemented | No | Needs DB; cross-business test not written |
 | AI provider abstraction | Implemented | No | No provider/key chosen |

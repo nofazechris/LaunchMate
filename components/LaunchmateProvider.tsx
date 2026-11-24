@@ -23,7 +23,7 @@ interface Ctx {
   typing: boolean;
   draft: string;
   setDraft: (v: string) => void;
-  startOnboarding: () => void;
+  startOnboarding: (name?: string) => void;
   answer: (text: string) => void;
   askRevise: () => void;
   /* build */
@@ -102,10 +102,10 @@ export function LaunchmateProvider({ children }: { children: ReactNode }) {
   }, []);
 
   /* ── onboarding ── */
-  const startOnboarding = useCallback(() => {
+  const startOnboarding = useCallback((name?: string) => {
     clearGroup("onboard");
     setChat([]); setQi(0); setAnswers({}); setDraft(""); setTyping(true);
-    later("onboard", () => { setTyping(false); setChat([{ u: false, text: QS[0].q }]); }, 600);
+    later("onboard", () => { setTyping(false); setChat([{ u: false, text: QS[0].q.replace("{name}", (name ?? "").trim().split(/s+/)[0] || "there") }]); }, 600);
   }, [clearGroup, later]);
 
   const answer = (text: string) => {

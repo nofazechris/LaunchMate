@@ -23,7 +23,7 @@ export default function OverviewScreen() {
     <div data-screen-label="04 Overview" style={css("padding:28px;display:flex;flex-direction:column;gap:16px;animation:lmIn .35s ease-out;max-width:1320px;width:100%")}>
       <div style={css("display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap")}>
         <div style={css("display:flex;flex-direction:column;gap:4px")}>
-          <h1 style={css("margin:0;font-size:26px;letter-spacing:-.02em;font-weight:600")}>Good afternoon, Funmi</h1>
+          <h1 style={css("margin:0;font-size:26px;letter-spacing:-.02em;font-weight:600")}>Welcome back</h1>
           <span style={css("font-size:14px;color:#78817B")}>2 orders need fulfilment today</span>
         </div>
         <div style={css("display:flex;padding:3px;border-radius:12px;background:#FFFFFF;border:1px solid #E8ECE8")}>

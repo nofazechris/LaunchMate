@@ -13,7 +13,7 @@ export const TASKS: { title: string; what: string; why: string; data: string; re
 export type AnswerKey = "idea" | "audience" | "type" | "budget" | "name" | "cat";
 
 export const QS: { q: string; key: Exclude<AnswerKey, "cat">; chips: string[]; ph: string }[] = [
-  { q: "Hi Funmi — I'm your Launchmate agent. What would you like to sell?", key: "idea", chips: ["Hand-dyed adire bags and scarves", "Skincare products", "Digital templates"], ph: "Describe your products…" },
+  { q: "Hi {name} — I'm your Launchmate agent. What would you like to sell?", key: "idea", chips: ["Hand-dyed adire bags and scarves", "Skincare products", "Digital templates"], ph: "Describe your products…" },
   { q: "Lovely. Who are your customers?", key: "audience", chips: ["Young professionals in Lagos", "Gift buyers across Nigeria", "Diaspora customers abroad"], ph: "Who do you want to serve?" },
   { q: "Will you sell physical items, digital downloads, or both?", key: "type", chips: ["Physical only", "Both physical and digital", "Digital only"], ph: "Physical, digital or both" },
   { q: "Roughly how much can you spend to get started? This covers things like your domain.", key: "budget", chips: ["Under ₦50,000", "₦50,000 – ₦150,000", "Over ₦150,000"], ph: "Your starting budget" },
@@ -85,10 +85,10 @@ export const WORLD_OBJECTS: { key: string; label: string; status: string; route:
 export const ACTIVITY_FULL = [
   ["Today 10:43", "Drafted dispatch label for #LM-1048", "Done", "Not required", "—"],
   ["Today 09:20", "Sent delivery update to Kemi Bello", "Done", "Not required", "—"],
-  ["20 Nov 14:05", "Registered adireandco.com", "Verified", "Approved by Funmi", "tx 0x9f3…a21"],
+  ["20 Nov 14:05", "Registered adireandco.com", "Verified", "Approved by you", "tx 0x9f3…a21"],
   ["20 Nov 14:07", "Configured DNS and HTTPS", "Verified", "Not required", "—"],
-  ["20 Nov 13:58", "Published storefront", "Done", "Approved by Funmi", "—"],
-  ["18 Nov 16:30", "Refunded #LM-1043", "Done", "Approved by Funmi", "ref RF-2231"],
+  ["20 Nov 13:58", "Published storefront", "Done", "Approved by you", "—"],
+  ["18 Nov 16:30", "Refunded #LM-1043", "Done", "Approved by you", "ref RF-2231"],
   ["18 Nov 11:12", "Tried to renew stock without approval", "Blocked", "Policy: ask first", "—"],
 ].map(([time, t, outcome, approval, ref]) => ({ time, t, outcome, approval, ref }));
 

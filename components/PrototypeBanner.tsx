@@ -8,9 +8,13 @@ import { css } from "@/lib/css";
  * transaction, registration or purchase. We say so, but quietly: a small pill that never covers
  * the layout. It goes away screen by screen as each one is backed by real data.
  */
+const SAMPLE_SCREENS = new Set(["/onboarding", "/build", "/overview", "/world", "/store", "/products", "/orders", "/finances", "/agent", "/activity", "/settings"]);
+
 export default function PrototypeBanner() {
   const path = usePathname();
-  if (path.startsWith("/agent-vault")) return null; // the one real, live screen
+  // Only the screens that still run on sample data. Landing, sign-up/in and /agent-vault are real.
+  const first = "/" + (path.split("/")[1] ?? "");
+  if (!SAMPLE_SCREENS.has(first)) return null;
   return (
     <div
       role="note"

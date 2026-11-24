@@ -8,7 +8,8 @@ import { NAV } from "@/lib/data";
 import { LogoMark } from "@/components/Logo";
 import { useLaunchmate } from "@/components/LaunchmateProvider";
 
-export default function Shell({ children }: { children: ReactNode }) {
+export default function Shell({ children, userName }: { children: ReactNode; userName: string }) {
+  const initials = userName.trim().split(/s+/).map((p) => p[0]).slice(0, 2).join("").toUpperCase() || "?";
   const { buildStarted, launched, tasks, restock, bizUrl } = useLaunchmate();
   const pathname = usePathname();
   const router = useRouter();
@@ -16,7 +17,7 @@ export default function Shell({ children }: { children: ReactNode }) {
 
   // No business yet (fresh load) -> back to the start. Still building -> only the build screen is open.
   useEffect(() => {
-    if (!buildStarted && !launched) router.replace("/");
+    if (!buildStarted && !launched) router.replace("/onboarding");
     else if (!launched && page !== "build") router.replace("/build");
   }, [buildStarted, launched, page, router]);
 
@@ -68,9 +69,9 @@ export default function Shell({ children }: { children: ReactNode }) {
           })}
         </nav>
         <div style={css("margin-top:auto;display:flex;align-items:center;gap:10px;padding:14px 8px 4px;border-top:1px solid #E8ECE8")}>
-          <span style={css("width:28px;height:28px;border-radius:50%;background:#EEF6F0;color:#185C3B;display:grid;place-items:center;font-size:12px;font-weight:600")}>FO</span>
+          <span style={css("width:28px;height:28px;border-radius:50%;background:#EEF6F0;color:#185C3B;display:grid;place-items:center;font-size:12px;font-weight:600")}>{initials}</span>
           <span style={css("display:flex;flex-direction:column")}>
-            <span style={css("font-size:13px;font-weight:500")}>Funmi Okafor</span>
+            <span style={css("font-size:13px;font-weight:500")}>{userName}</span>
             <span style={css("font-size:12px;color:#78817B")}>Owner</span>
           </span>
         </div>
