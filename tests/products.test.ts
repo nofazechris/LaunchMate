@@ -63,3 +63,44 @@ test("domain: refuses things that are not domains", () => {
     assert.equal(normalizeDomain(bad), null, `"${bad.slice(0, 30)}" should be refused`);
   }
 });
+
+import { lineTotal, makeOrderCode, mergeLines, normalizePhone, whatsappDigits } from "../lib/orders.ts";
+import { createLimiter } from "../lib/rate-limit.ts";
+
+test("orders: phone numbers are tidied for WhatsApp, junk is refused", () => {
+  assert.equal(normalizePhone("0803 123 4567"), "+2348031234567");
+  assert.equal(normalizePhone("+234 803-123-4567"), "+2348031234567");
+  assert.equal(normalizePhone("2348031234567"), "+2348031234567");
+  assert.equal(normalizePhone("(0803) 123 4567"), "+2348031234567");
+  assert.equal(normalizePhone("+447911123456"), "+447911123456");
+  for (const bad of ["", "abc", "123", "08031234", "+23480312345678901234", "0803 123 456x", "<script>"]) assert.equal(normalizePhone(bad), null, bad);
+  assert.equal(whatsappDigits("+2348031234567"), "2348031234567");
+});
+
+test("orders: codes use only unambiguous characters", () => {
+  let n = 0;
+  const code = makeOrderCode(() => n++ % 32);
+  assert.equal(code.length, 8);
+  assert.match(code, /^[A-HJ-NP-Z2-9]{8}$/);
+  const many = Array.from({ length: 200 }, () => makeOrderCode((k) => Math.floor(Math.random() * k)));
+  assert.ok(many.every((c) => !/[01OI]/.test(c)));
+  assert.equal(new Set(many).size, 200); // no collisions in a small sample
+});
+
+test("orders: totals are exact integers and repeated products merge and cap", () => {
+  assert.equal(lineTotal(1850050, 3), 5550150);
+  assert.deepEqual(mergeLines([{ productId: "a", quantity: 2 }, { productId: "b", quantity: 1 }, { productId: "a", quantity: 3 }]), [{ productId: "a", quantity: 5 }, { productId: "b", quantity: 1 }]);
+  assert.deepEqual(mergeLines([{ productId: "a", quantity: 90 }, { productId: "a", quantity: 90 }]), [{ productId: "a", quantity: 99 }]);
+});
+
+test("rate limit: blocks after the limit, recovers after the window", () => {
+  let t = 1000;
+  const lim = createLimiter({ windowMs: 60_000, max: 3, now: () => t });
+  assert.ok(lim.check("ip1").ok && lim.check("ip1").ok && lim.check("ip1").ok);
+  const blocked = lim.check("ip1");
+  assert.equal(blocked.ok, false);
+  assert.ok(blocked.retryAfterMs > 0 && blocked.retryAfterMs <= 60_000);
+  assert.ok(lim.check("ip2").ok, "other callers are unaffected");
+  t += 61_000;
+  assert.ok(lim.check("ip1").ok, "allowed again after the window");
+});

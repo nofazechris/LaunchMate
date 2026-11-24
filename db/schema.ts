@@ -217,6 +217,42 @@ export const productStockMovements = pgTable("product_stock_movements", {
   createdAt: createdAt(),
 }, (t) => [uniqueIndex("stock_movements_idem_uq").on(t.businessId, t.idempotencyKey)]);
 
+/* ───────────── orders (order requests; payments are added later) ───────────── */
+
+export const orderStatus = pgEnum("order_status", ["new", "contacted", "fulfilled", "cancelled"]);
+
+/**
+ * A customer's request to buy. Prices are copied from the products at the moment of the request
+ * (computed on the server, never taken from the browser). Stock is only deducted when the seller
+ * marks the order fulfilled.
+ */
+export const orders = pgTable("orders", {
+  id: id(),
+  businessId: uuid("business_id").notNull().references(() => businesses.id, { onDelete: "cascade" }),
+  /** Short, hard-to-guess code the customer keeps (also their confirmation link). */
+  code: text("code").notNull(),
+  status: orderStatus("status").notNull().default("new"),
+  customerName: text("customer_name").notNull(),
+  customerPhone: text("customer_phone").notNull(),
+  deliveryAddress: text("delivery_address").notNull(),
+  note: text("note"),
+  totalMinor: money("total_minor").notNull(),
+  currency: text("currency").notNull(),
+  createdAt: createdAt(),
+  updatedAt: updatedAt(),
+}, (t) => [uniqueIndex("orders_code_uq").on(t.code), index("orders_biz_idx").on(t.businessId, t.createdAt)]);
+
+export const orderItems = pgTable("order_items", {
+  id: id(),
+  orderId: uuid("order_id").notNull().references(() => orders.id, { onDelete: "cascade" }),
+  businessId: uuid("business_id").notNull().references(() => businesses.id, { onDelete: "cascade" }),
+  /** Kept as a link while the product exists; the name and price below are the permanent record. */
+  productId: uuid("product_id").references(() => products.id, { onDelete: "set null" }),
+  name: text("name").notNull(),
+  unitPriceMinor: money("unit_price_minor").notNull(),
+  quantity: integer("quantity").notNull(),
+}, (t) => [index("order_items_order_idx").on(t.orderId)]);
+
 /* ───────────── security & hackathon evidence ───────────── */
 
 export const auditLogs = pgTable("audit_logs", {

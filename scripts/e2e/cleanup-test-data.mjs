@@ -1,6 +1,6 @@
 import { Pool } from "@neondatabase/serverless";
 const p = new Pool({ connectionString: process.env.DATABASE_URL_UNPOOLED });
-const slugs = ["prod-test-a", "prod-test-b"];
+const slugs = ["prod-test-a", "prod-test-b", "store-test-a", "store-test-b"];
 const emails = ["lm-prod-a@example.com", "lm-prod-b@example.com"];
 const ids = (await p.query("select id from businesses where slug = any($1::text[])", [slugs])).rows.map((r) => r.id);
 let a = 0;

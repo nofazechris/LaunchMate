@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { and, eq, ne } from "drizzle-orm";
+import { and, count, eq, ne } from "drizzle-orm";
 import { db } from "@/db";
-import { agentMemory, productAssets, products } from "@/db/schema";
+import { agentMemory, orders, productAssets, products } from "@/db/schema";
 import { IsoBoxes, IsoScene } from "@/components/Iso";
 import { boxes } from "@/lib/data";
 import { css } from "@/lib/css";
@@ -30,6 +30,10 @@ export default async function Page() {
     .where(and(eq(agentMemory.businessId, business.id), eq(agentMemory.key, "preferred_domain"))).limit(1);
   const hasDomainChoice = !!(domainMem?.value as { domain?: string } | undefined)?.domain;
 
+  const [{ fresh }] = await db.select({ fresh: count() }).from(orders).where(and(eq(orders.businessId, business.id), eq(orders.status, "new")));
+  const isOpen = business.status === "live";
+  const published = live.filter((p) => p.status === "published" && p.priceMinor !== null);
+
   // What needs attention right now: computed from your real products each time you open this page.
   const physical = live.filter((p) => p.productType === "physical");
   const out = physical.filter((p) => p.quantityOnHand === 0);
@@ -38,6 +42,8 @@ export default async function Page() {
   const noPhoto = live.filter((p) => !withPhoto.has(p.id));
 
   const alerts: Alert[] = [];
+  if (fresh > 0) alerts.push({ tone: "warn", title: `${plural(fresh, "new order request", "new order requests")}`, detail: "A customer is waiting to hear from you.", href: "/orders", cta: "View orders" });
+  if (!isOpen && published.length > 0) alerts.push({ tone: "info", title: "Your store is ready to open", detail: `${plural(published.length, "product is", "products are")} published. Open your store so customers can see ${published.length === 1 ? "it" : "them"}.`, href: "/store", cta: "Open store" });
   if (live.length === 0) alerts.push({ tone: "info", title: "Add your first product", detail: "Your store needs something to sell. It takes a minute: a name, a price, and a photo.", href: "/products/new", cta: "Add a product" });
   if (out.length) alerts.push({ tone: "warn", title: `${plural(out.length, "product is", "products are")} out of stock`, detail: names(out.map((p) => p.name)), href: "/products", cta: "Update stock" });
   if (low.length) alerts.push({ tone: "warn", title: `${plural(low.length, "product is", "products are")} running low`, detail: names(low.map((p) => `${p.name} (${p.quantityOnHand} left)`)), href: "/products", cta: "Review" });
@@ -49,8 +55,8 @@ export default async function Page() {
     { title: "Your business is set up", note: "Your details are saved and you can change them any time.", state: "done" },
     { title: live.length > 0 ? `Add more products (${live.length} so far)` : "Add your products", note: "What you sell, with photos, prices and stock.", state: live.length > 0 ? "done" : "ready", href: "/products" },
     { title: "Choose your store address", note: "Your free address is reserved. You can ask for your own domain too.", state: hasDomainChoice ? "done" : "ready", href: "/domain" },
-    { title: "Take payments", note: "Customers pay into your own account. Coming soon.", state: "soon" },
-    { title: "Open your store", note: "Share one link and start selling. Coming soon.", state: "soon" },
+    { title: isOpen ? "Your store is open" : "Open your store", note: isOpen ? "Share your store link with customers." : "Share one link and start selling.", state: isOpen ? "done" : published.length > 0 ? "ready" : "soon", href: "/store" },
+    { title: "Take payments in the store", note: "Customers pay into your own account. Coming soon. Until then, customers send order requests and you arrange payment.", state: "soon" },
   ];
   const chip = { done: ["Done", "#E9F4EE", "#1F6B43"], ready: ["Ready", "#EAF2F8", "#2F6A92"], soon: ["Soon", "#F3F5F2", "#78817B"] } as const;
 
@@ -69,7 +75,7 @@ export default async function Page() {
         <div style={css(card)}>
           <div style={css("display:flex;justify-content:space-between;align-items:center;gap:8px")}>
             <span style={css("font-size:17px;font-weight:600")}>{business.name}</span>
-            <span style={css("font-size:12px;padding:3px 9px;border-radius:999px;background:#FBF3E6;color:#8A5E1C;font-weight:500")}>Not live yet</span>
+            <span style={css("font-size:12px;padding:3px 9px;border-radius:999px;background:#FBF3E6;color:#8A5E1C;font-weight:500")}>{isOpen ? "Open" : "Not open yet"}</span>
           </div>
           <div style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;font-size:13px")}>
             <div style={css("display:flex;flex-direction:column;gap:2px")}><span style={css("color:#78817B")}>Category</span><span>{business.category || "Not set"}</span></div>

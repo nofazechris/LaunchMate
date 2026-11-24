@@ -20,7 +20,7 @@
 The hackathon requirements are met in the machinery and shown in the demo video and docs, not in the seller interface.
 
 ## What is real today
-Account, setup in a few questions, products with photos and stock, "needs your attention" from real data, a store address page that saves the domain the seller wants.
+Account, setup in a few questions, products with photos and stock, "needs your attention" from real data, a public store customers can browse, a cart and order requests with a seller Orders page (WhatsApp, fulfil updates stock), open/close control, and a store-address page that saves the domain the seller wants.
 
 ## What is not built yet (do not imply otherwise)
-Public storefront, checkout and payments, orders, customers, finances, automatic domain purchase and setup, email/WhatsApp alerts. See docs/ROADMAP.md.
+Card payments in the store (orders are requests: nobody is charged), customers list, finances, a subdomain per store, automatic domain purchase and setup, email/WhatsApp alerts. See docs/ROADMAP.md.

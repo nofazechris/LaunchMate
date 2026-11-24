@@ -9,9 +9,9 @@ Landing page · account sign-up/sign-in · guided onboarding (saves progress on 
 | # | Piece | Size | Needs from the owner |
 |---|---|---|---|
 | 1 | **Products**: add/edit with photos, price, stock; list and search. **Done (24 Nov)**: photos are stored in the database, resized in the browser (about 20 to 300 KB each). Move to R2 when volume grows or the public storefront needs a CDN | done | R2 credentials, later |
-| 2 | **Public storefront** at `/s/<slug>` (home, product page, cart); later `<slug>.yourdomain` | L | The domain and Vercel wildcard setup |
+| 2 | **Public storefront** at `/s/<slug>`: **done (24 Nov)**, with order requests. Next for it: a subdomain per store and your own domain | partly | The domain and Vercel wildcard setup |
 | 3 | **Checkout and payments** with webhook-verified orders and stock deduction | L | Paystack account and keys |
-| 4 | **Orders and fulfilment** screen, customer records | M | – |
+| 4 | **Orders and fulfilment**: **done** for order requests (WhatsApp, statuses, stock on fulfil). Customer records still to do | partly | – |
 | 5 | **Business agent**: free-text understanding, product extraction from text/photos, approvals before anything consequential | L | An AI provider key (provider is configurable) |
 | 6 | **Account basics**: edit business profile, password reset, email verification | M | An email provider |
 | 7 | **Finances**: sales, expenses, profit estimate by currency | M | – |

@@ -1,6 +1,8 @@
 export const NAV: { id: string; label: string; divider?: boolean }[] = [
   { id: "overview", label: "Overview" },
   { id: "products", label: "Products" },
+  { id: "orders", label: "Orders" },
+  { id: "store", label: "Store" },
   { id: "domain", label: "Domain" },
 ];
 
