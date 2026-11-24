@@ -2,7 +2,9 @@
 
 Published weights (Self Agent ID and Agent Vault tracks): integration quality 30% · innovation/value 30% · named user + real job 25% · real use 15%. A project that misses a track's mandatory requirement is not scored in that track. Status as of 24 Nov 2026 — nothing below is Verified yet.
 
-## Primary: Self Agent ID — Verified Agent Payments
+> **Update 24 Nov 2026:** the Self track is blocked (no chip passport available before the deadline). Agent Vault is now the primary track; see AGENT_VAULT.md.
+
+## Self Agent ID — Verified Agent Payments (blocked)
 Mandatory: ERC-8004 identity · a service where the Self human-proof check changes who is served/paid/limited · x402 payments on Celo mainnet · Self agentId (mainnet).
 
 | Criterion | What a judge needs to see | Where we are |
@@ -12,7 +14,7 @@ Mandatory: ERC-8004 identity · a service where the Self human-proof check chang
 | Named user + real job (25%) | A named person/business outside the team, the job done, time/money saved, where users and volume came from. | **Nothing yet.** Cannot be created by us. Needs a real merchant. |
 | Real use (15%) | x402 payments made/received during the window; paid calls to services on buy count in our favour. | **Nothing yet.** Needs funded buyer + settled payments. |
 
-## Secondary: Agent Vault — Online & Onchain Checkouts
+## Primary (switched): Agent Vault — Online & Onchain Checkouts
 Mandatory: Agent Vault sign-in (or checkout) on a real website without the agent seeing the password/card, within a spending rule, plus an x402 payment on Celo. Not started — Agent Vault account/SDK access needed. Entry field: x402 tx hash, website(s), spending rule.
 
 ## Required on every entry (from the platform's own field list)

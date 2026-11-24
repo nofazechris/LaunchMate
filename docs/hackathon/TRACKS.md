@@ -4,8 +4,8 @@ A project can win at most **two** tracks. We commit to two and do not dilute the
 
 | Track | Decision | Why |
 |---|---|---|
-| Self Agent ID — Verified Agent Payments | **Primary** | Highest priority; verification must change a real service decision |
-| Agent Vault — Online & Onchain Checkouts | **Secondary** | Website sign-in without seeing the password + a real x402 payment |
+| Self Agent ID — Verified Agent Payments | **Blocked** | Needs a chip passport; owner cannot obtain one before 7 Dec. Gate code kept; track not claimed unless organizers say otherwise |
+| Agent Vault — Online & Onchain Checkouts | **Primary (switched 24 Nov)** | Website sign-in without seeing the password + a real x402 payment; no Self registration needed (pending organizer confirmation) |
 | Altana Agent Wallets | Deferred | Needs a real onchain session-key; do not simulate caps in app code |
 | Stablecoin Corridors (Textile FX) | Deferred | Needs a tagged mainnet cNGN conversion paid to an outside recipient |
 
