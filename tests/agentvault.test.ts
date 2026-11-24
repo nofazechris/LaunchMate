@@ -49,3 +49,19 @@ test("LIVE: signing in to a site with no stored login reports no_login and opens
   });
   assert.equal(r.outcome, "no_login");
 });
+
+// ── Owner-token guard: these routes can spend the owner's wallet, so they must never be open. ──
+import { requireOwnerToken } from "../lib/agentvault/guard.ts";
+const req = (t?: string) => new Request("http://x/api", { headers: t ? { "x-owner-token": t } : {} });
+const SECRET = "a-test-secret-of-16plus-chars";
+
+test("guard: disabled (503) when no secret is configured, never open", () => {
+  assert.equal(requireOwnerToken(req("anything"), {})?.status, 503);
+  assert.equal(requireOwnerToken(req("short"), { DEMO_ADMIN_TOKEN: "short" })?.status, 503);
+});
+
+test("guard: wrong or missing token is 401; right token passes", () => {
+  assert.equal(requireOwnerToken(req(), { DEMO_ADMIN_TOKEN: SECRET })?.status, 401);
+  assert.equal(requireOwnerToken(req("wrong-token-of-similar-len!!"), { DEMO_ADMIN_TOKEN: SECRET })?.status, 401);
+  assert.equal(requireOwnerToken(req(SECRET), { DEMO_ADMIN_TOKEN: SECRET }), null);
+});

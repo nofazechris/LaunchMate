@@ -16,9 +16,9 @@ Statuses: Designed · Implemented · Configured · Tested · Production verified
 | Paystack, orders, webhooks | Not started | – | Paystack account |
 | Domains | Not started | – | Registrar access |
 | Finance | Not started | – | – |
-| ERC-8004 | Not started | – | Enrolment, wallet, gas |
+| ERC-8004 | Implemented (script + agent file) | Dry run vs real registry; nothing sent | ~0.062 CELO gas in agent wallet |
 | Self Agent ID (service gate) | Implemented | Denied path tested (mainnet reads); served path not | Owner passport scan to create a registered agent |
-| Agent Vault | Not started | – | Account/SDK access |
+| Agent Vault | Implemented (module, routes, page) | 16 tests; live read-only calls; no sign-in or payment yet | Stored website login; ~$3 stablecoin in Agent Vault wallet |
 | x402 seller | Implemented (`withX402`) | Not exercised | PayTo address, facilitator API key, funded buyer |
 | Celo attribution | Implemented | Unit-tested (signed tx calldata decoded); not verified on mainnet | First mainnet tx (tag itself confirmed by platform) |
 | Textile FX / Altana | Deferred | – | – |

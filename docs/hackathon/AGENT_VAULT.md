@@ -1,6 +1,6 @@
 # Agent Vault + x402 (now the PRIMARY track)
 
-**Status: Docs read. Owner has an Agent Vault account and created an API key (24 Nov 2026). SDK installed locally (inspected first). Connection check script ready, NOT yet run (key not yet in .env.local). No sign-in, no payment yet. Nothing Verified.**
+**Status (24 Nov 2026): integration BUILT and tested without money; no website login stored yet, no sign-in run, wallet unfunded, no payment made. Nothing Verified.** See RUNBOOK.md for the remaining steps.
 
 **SDK install note:** `@agentvault/playwright` 0.0.1 is not on npm; Agent Vault hosts a tarball. The tarball was downloaded and inspected (no install scripts; deps `playwright-core`, `ws`; no process-spawning/eval) and installed with `npm install --no-save` because this machine's npm refuses remote tarballs. It is therefore not in package.json: reinstall with the command in `.env.example`. Env vars: `SELF_AGENT_PAY_API_KEY`, `SELF_AGENT_PAY_PROXY_URL=wss://proxy.agentvault.io/v1`, `SELF_AGENT_PAY_API_URL=https://api.agentvault.io`. Check: `npm run av:check` (read-only `listTokens()`).
 
