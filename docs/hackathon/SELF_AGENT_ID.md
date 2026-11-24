@@ -25,6 +25,9 @@ No documented way. Every registration mode generates the agent key itself (`link
 1. Does a Self-registry registration also satisfy the platform's "ERC-8004 agent ID" check, or must we also register at the Celo Identity Registry (`0x8004A169…`)? Plan for both until the platform's checklist says otherwise.
 2. Which disclosure config (age / OFAC) to register with. OFAC can fail for non-passport documents; default age 0 unless a verifier needs more.
 
+## Registration (wallet-free, Celo mainnet) — decided 24 Nov 2026
+Owner chose `wallet-free`: the agent's own address owns its identity NFT; no human wallet needed. Script: `npm run self:register` (`-- --check` opens a session and registers nothing; verified working against mainnet). It scans-then-exports: exports Self's generated key, checks it matches the registered address, saves it to `.env.local` (never printed), sets aside the old unfunded wallet only if provably empty, refuses to run twice, then re-verifies on-chain. Disclosures: minimumAge 0, ofac false (config 0) — **use the same values for any refresh or deregistration**. **Status: script ready, NOT yet run — the owner's passport scan has not happened.**
+
 ## Required from the owner (cannot be done by the agent)
 Self app on a phone, the owner's real chip passport, and the owner scanning the QR themselves.
 
