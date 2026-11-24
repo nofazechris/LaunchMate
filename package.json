@@ -16,6 +16,7 @@
     "erc8004:register": "node --env-file=.env.local scripts/register-erc8004.mjs"
   },
   "dependencies": {
+    "@agentvault/playwright": "https://app.agentvault.io/sdk/agentvault-playwright.tgz",
     "@celo/attribution-tags": "^0.5.0",
     "@neondatabase/serverless": "^1.2.1",
     "@selfxyz/agent-sdk": "^0.3.1",

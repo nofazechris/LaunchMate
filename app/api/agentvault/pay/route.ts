@@ -5,7 +5,7 @@ import { requireOwnerToken } from "@/lib/agentvault/guard";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-export const maxDuration = 120;
+export const maxDuration = 60; // Vercel Hobby limit
 
 const input = z.object({
   url: z.string().url(),
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
       body: p.body,
       maxUsd: p.maxUsd,
       idempotencyKey: p.idempotencyKey ?? "lm-" + randomBytes(12).toString("hex"),
-      waitForOwnerMs: 100 * 1000, // inside maxDuration; if still pending the UI retries with the same idempotencyKey
+      waitForOwnerMs: 45 * 1000, // inside maxDuration; if still pending the UI retries with the same idempotencyKey
     });
     return Response.json({ ...result, ceilingUsd: maxPaymentCeiling() });
   } catch (e) {
