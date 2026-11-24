@@ -1,14 +1,19 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { css } from "@/lib/css";
-import { boxes, CTX, PRODUCTS, QS } from "@/lib/data";
+import { boxes, CTX, QS } from "@/lib/data";
 import { IsoBoxes, IsoScene } from "@/components/Iso";
 import { LogoMark } from "@/components/Logo";
 import { useLaunchmate } from "@/components/LaunchmateProvider";
 
 export default function OnboardingScreen({ userName }: { userName: string }) {
-  const { answers: a, chat, qi, typing, draft, setDraft, startOnboarding, answer, askRevise, startBuild } = useLaunchmate();
+  const { answers: a, chat, qi, typing, draft, setDraft, startOnboarding, answer, askRevise } = useLaunchmate();
+  const router = useRouter();
+  const [edits, setEdits] = useState<Record<string, string>>({});
+  const [creating, setCreating] = useState(false);
+  const [createError, setCreateError] = useState<string | null>(null);
   const bottom = useRef<HTMLDivElement>(null);
 
   // Landing here directly (or after a refresh) with nothing started: begin the conversation.
@@ -28,12 +33,36 @@ export default function OnboardingScreen({ userName }: { userName: string }) {
   const scene = useMemo(() => boxes(stage, null), [stage]);
   const stageLabel = ["Empty plot", "Idea", "Identity", "Storefront draft"][stage];
 
+  // Only what the owner actually told us. Nothing here is invented; every field is editable.
   const blueprint: [string, string][] = [
-    ["Business name", a.name || "Adire & Co."], ["Category", a.cat || "Fashion & apparel"],
-    ["Description", "Hand-dyed adire bags, scarves and home textiles"], ["Target market", a.audience || "Young professionals in Lagos"],
-    ["Product type", a.type || "Both"], ["Brand direction", "Indigo, sand, handmade, modern"],
-    ["Storefront", "Home, Shop, About, Contact, Policies"], ["Launch budget", a.budget || "₦50,000 – ₦150,000"],
+    ["Business name", a.name ?? ""], ["Category", a.cat ?? ""],
+    ["Description", a.idea ?? ""], ["Target market", a.audience ?? ""],
+    ["Product type", a.type ?? ""], ["Launch budget", a.budget ?? ""],
+    ["Brand direction", ""],
   ];
+  const val = (k: string, v: string) => edits[k] ?? v;
+
+  async function createBusiness() {
+    const bp = Object.fromEntries(blueprint.map(([k, v]) => [k, val(k, v).trim()]));
+    if (bp["Business name"].length < 2) return setCreateError("Please give your business a name.");
+    setCreating(true);
+    setCreateError(null);
+    try {
+      const res = await fetch("/api/businesses", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ name: bp["Business name"], category: bp["Category"] || undefined, description: bp["Description"] || undefined, profile: { answers: a, blueprint: bp } }),
+      });
+      if (res.status === 409) { router.push("/overview"); router.refresh(); return; } // already has one
+      if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error ?? "Could not save your business.");
+      router.push("/overview");
+      router.refresh();
+    } catch (e) {
+      setCreateError(e instanceof Error ? e.message : "Could not save your business.");
+    } finally {
+      setCreating(false);
+    }
+  }
 
   const send = () => { const t = draft.trim(); if (t) answer(t); };
 
@@ -84,22 +113,16 @@ export default function OnboardingScreen({ userName }: { userName: string }) {
               </div>
               <div style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px")}>
                 {blueprint.map(([k, v]) => (
-                  <label key={k + v} style={css("display:flex;flex-direction:column;gap:6px;font-size:12px;color:#78817B")}>{k}
-                    <input className="fx-input" defaultValue={v} style={css("font-size:14px;color:#202723;padding:10px 12px;border:1px solid #E8ECE8;border-radius:10px;outline:none;background:#FFFFFF")} />
+                  <label key={k} style={css("display:flex;flex-direction:column;gap:6px;font-size:12px;color:#78817B")}>{k}
+                    <input className="fx-input" value={val(k, v)} onChange={(e) => setEdits((x) => ({ ...x, [k]: e.target.value }))} placeholder={k === "Brand direction" ? "Optional, e.g. warm, modern, handmade" : undefined} style={css("font-size:14px;color:#202723;padding:10px 12px;border:1px solid #E8ECE8;border-radius:10px;outline:none;background:#FFFFFF")} />
                   </label>
                 ))}
               </div>
-              <div style={css("display:flex;flex-direction:column;gap:8px")}>
-                <span style={css("font-size:12px;color:#78817B")}>Initial catalogue · suggested prices</span>
-                {PRODUCTS.map((p) => (
-                  <div key={p.name} style={css("display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:10px 12px;border-radius:10px;background:#F8FAF8")}>
-                    <span>{p.name}</span><span style={css("font-family:var(--font-mono)")}>{p.price}</span>
-                  </div>
-                ))}
-              </div>
+              <span style={css("font-size:13px;color:#5E6862;line-height:1.5")}>Next you&apos;ll add your own products. Nothing is published, and nothing is charged.</span>
+              {createError && <div role="alert" style={css("font-size:13px;padding:10px 12px;border-radius:10px;background:#FCEEEE;color:#8E2F2F")}>{createError}</div>}
               <div style={css("display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap")}>
                 <button onClick={askRevise} className="hv-grey" style={css("font-size:14px;padding:11px 16px;border-radius:10px;border:1px solid #E8ECE8;background:#FFFFFF;cursor:pointer")}>Ask for revisions</button>
-                <button onClick={startBuild} className="hv-green press" style={css("font-size:14px;padding:11px 18px;border-radius:10px;border:none;background:#26734D;color:#FFFFFF;font-weight:500;cursor:pointer")}>Approve blueprint &amp; start building</button>
+                <button onClick={createBusiness} disabled={creating} className="hv-green press" style={css("font-size:14px;padding:11px 18px;border-radius:10px;border:none;background:#26734D;color:#FFFFFF;font-weight:500;cursor:pointer")}>{creating ? "Saving…" : "Create my business"}</button>
               </div>
             </div>
           )}

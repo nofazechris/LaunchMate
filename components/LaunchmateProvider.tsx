@@ -105,7 +105,7 @@ export function LaunchmateProvider({ children }: { children: ReactNode }) {
   const startOnboarding = useCallback((name?: string) => {
     clearGroup("onboard");
     setChat([]); setQi(0); setAnswers({}); setDraft(""); setTyping(true);
-    later("onboard", () => { setTyping(false); setChat([{ u: false, text: QS[0].q.replace("{name}", (name ?? "").trim().split(/s+/)[0] || "there") }]); }, 600);
+    later("onboard", () => { setTyping(false); setChat([{ u: false, text: QS[0].q.replace("{name}", (name ?? "").trim().split(/\s+/)[0] || "there") }]); }, 600);
   }, [clearGroup, later]);
 
   const answer = (text: string) => {
