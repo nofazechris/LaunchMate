@@ -11,7 +11,8 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/*.test.ts",
     "wallet:generate": "node scripts/generate-agent-wallet.mjs",
-    "self:register": "node scripts/register-self-agent.mjs"
+    "self:register": "node scripts/register-self-agent.mjs",
+    "av:check": "node --env-file=.env.local scripts/agentvault-check.mjs"
   },
   "dependencies": {
     "@celo/attribution-tags": "^0.5.0",
