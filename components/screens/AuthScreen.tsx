@@ -101,8 +101,8 @@ export default function AuthScreen({ mode, notice }: { mode: "signup" | "signin"
           </IsoScene>
         </div>
         <div style={css("display:flex;flex-direction:column;gap:6px;text-align:center;max-width:360px")}>
-          <span style={css("font-size:18px;font-weight:600;letter-spacing:-.01em")}>Your business starts here.</span>
-          <span style={css("font-size:14px;color:#5E6862;line-height:1.5")}>Describe your idea and your agent helps you build the storefront, products and business basics.</span>
+          <span style={css("font-size:18px;font-weight:600;letter-spacing:-.01em")}>Your online store starts here.</span>
+          <span style={css("font-size:14px;color:#5E6862;line-height:1.5")}>Tell us what you sell and we handle the technical setup: your store, your address and your products.</span>
         </div>
       </div>
     </div>

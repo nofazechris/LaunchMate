@@ -6,7 +6,7 @@
 
 | Variable | Needed for | Notes |
 |---|---|---|
-| `DEMO_ADMIN_TOKEN` | `/agent-vault` page + routes | 16+ chars. Without it those routes are disabled (safe default). Use a NEW random value for production, not your local one. |
+| `DEMO_ADMIN_TOKEN` | `/admin/agent-vault` page + routes | 16+ chars. Without it those routes are disabled (safe default). Use a NEW random value for production, not your local one. |
 | `SELF_AGENT_PAY_API_KEY` | Agent Vault | From Agent Vault → API keys. Server secret. |
 | `SELF_AGENT_PAY_PROXY_URL` | Agent Vault | `wss://proxy.agentvault.io/v1` |
 | `SELF_AGENT_PAY_API_URL` | Agent Vault | `https://api.agentvault.io` |
@@ -18,7 +18,7 @@
 
 Not needed yet: `DATABASE_URL*` (the database is not connected to the UI yet).
 
-3. Deploy. Visit `/` (prototype, clearly labelled) and `/agent-vault` (real, locked by the owner token). That URL is your **Demo URL** for the entry.
+3. Deploy. Visit `/` (the landing page) and `/admin/agent-vault` (real, locked by the owner token). That URL is your **Demo URL** for the entry.
 
 ## 2. Domain + merchant subdomains
 - Buy the domain at a registrar whose login is **email + password** (Porkbun, Namecheap, Name.com). Avoid ones that force an SMS code at every sign-in: the code always goes to you, not the agent. Don't buy it *through* Vercel for this demo (Vercel sign-in is usually GitHub OAuth, which Agent Vault can't fill).

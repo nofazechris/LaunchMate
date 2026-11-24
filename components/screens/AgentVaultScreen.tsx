@@ -88,8 +88,8 @@ export default function AgentVaultScreen() {
   return (
       <main style={css("max-width:860px;width:100%;padding:28px;display:flex;flex-direction:column;gap:16px;animation:lmIn .35s ease-out")}>
         <div style={css("display:flex;flex-direction:column;gap:4px")}>
-          <h1 style={css("margin:0;font-size:26px;letter-spacing:-.02em;font-weight:600")}>Domain setup</h1>
-          <span style={css("font-size:14px;color:#78817B;line-height:1.5")}>Your agent signs in to your registrar account and pays for data services. It only ever handles placeholder tokens: your password and card never reach it, and nothing is paid without your approval and a hard spending limit.</span>
+          <h1 style={css("margin:0;font-size:26px;letter-spacing:-.02em;font-weight:600")}>Operator tools: secure sign-in and payments</h1>
+          <span style={css("font-size:14px;color:#78817B;line-height:1.5")}>Internal console for the Agent Vault integration (hackathon track). It signs in to one stored website login and pays one marketplace service, using placeholders only, under a hard spending ceiling and with your approval. Not part of the seller experience.</span>
         </div>
 
         <section style={css(card)}>

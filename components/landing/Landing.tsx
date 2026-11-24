@@ -10,56 +10,63 @@ import { LogoMark } from "@/components/Logo";
 /* ───────────── content ───────────── */
 
 const HERO_STAGES: [string, string][] = [
-  ["Idea", "Your description becomes a structured business plan."],
-  ["Identity", "Name, colours and brand mark take shape."],
-  ["Storefront", "A fast storefront forms from a tested template."],
-  ["Products", "Listings, prices and images fill the shelves."],
-  ["Infrastructure", "Payments, records and your domain connect."],
-  ["Launch", "Your business is live and taking orders."],
+  ["Idea", "You tell us what you sell."],
+  ["Name", "Your store gets its name and its look."],
+  ["Store", "Your storefront is set up for you."],
+  ["Products", "Your products and prices go on the shelves."],
+  ["Setup", "The technical parts, like your address and payments, are handled."],
+  ["Open", "You're open for business."],
 ];
 
 const PAINS: [string, string, string][] = [
-  ["Ten tools, none of them talking", "A website builder, a payment account, a spreadsheet, a notes app, a chat thread with customers. Each is another login and another thing to learn.", "01"],
-  ["The technical wall", "Domains, DNS, checkout, product pages. You can lose weeks to setup before you sell a single thing.", "02"],
-  ["Real money, easy mistakes", "One wrong click on a payment or a domain costs real money. You want help that stops and asks first.", "03"],
+  ["Too many tools", "A website builder, a payment account, a spreadsheet, a chat with every customer. Each one is another login and another thing to learn.", "01"],
+  ["The technical wall", "Domains, hosting, checkout, product pages. You can lose weeks before you sell anything, or pay someone to do it for you.", "02"],
+  ["Mistakes cost real naira", "One wrong click on a payment or a domain costs real money. You want help that stops and asks you first.", "03"],
 ];
 
 const STEPS: [string, string, string][] = [
-  ["Tell it your idea", "Say what you sell and who you sell to, in your own words. No forms full of jargon.", "01"],
-  ["Watch it take shape", "Your agent drafts the plan, brand direction, storefront and product listings. You edit anything.", "02"],
-  ["Approve, then launch", "Anything that spends money or goes public waits for your clear yes, with the exact amount shown.", "03"],
+  ["Tell us what you sell", "Say it in your own words. No forms full of jargon, and no technical decisions.", "01"],
+  ["We set it up for you", "Launchmate prepares your store, your address and your product listings. You look it over and change anything you like.", "02"],
+  ["You approve, then sell", "Anything that costs money waits for your yes, with the exact amount shown. Then you're open.", "03"],
 ];
 
 type Status = "Available" | "In progress";
 const CAPS: [string, string, Status][] = [
-  ["An agent with limits", "Signs in to your accounts through Agent Vault without ever seeing a password, and pays for services within a spending limit you set.", "Available"],
-  ["Business plan from a conversation", "Turn a plain description into a structured plan you can edit. Your answers are saved to your account.", "Available"],
-  ["Products from your own stock", "Add products with photos and prices. Descriptions written from what you provide, never invented.", "In progress"],
-  ["A storefront on your address", "A fast, mobile-first store built from tested templates, with a free address and an optional custom domain.", "In progress"],
-  ["Payments and orders", "An order counts as paid only when the payment provider confirms it, never just because a customer came back from checkout.", "In progress"],
-  ["Money in plain language", "Revenue, expenses and what you keep, by currency, with nothing converted behind your back.", "In progress"],
+  ["Set up for you", "Answer a few questions and your business profile is created. Change anything, any time.", "Available"],
+  ["Your products, your photos", "Add what you sell with prices, stock and photos. Every stock change is recorded, so you never lose count.", "Available"],
+  ["Keeps an eye on things", "Spots low stock, missing prices and missing photos, and tells you what needs your attention.", "Available"],
+  ["Your own address", "A free Launchmate address for your store, and your own domain if you want one. We handle the setup.", "In progress"],
+  ["A store that sells", "A fast, mobile-first storefront built from tested templates, ready to share with one link.", "In progress"],
+  ["Payments that go to you", "Customers pay into your own account. An order counts as paid only when the payment provider confirms it.", "In progress"],
+];
+
+const WATCH: [string, string][] = [
+  ["Running low", "Zip-front dress has 2 left"],
+  ["No price yet", "3 products can't be bought"],
+  ["Needs a photo", "Ankara skirt has no picture"],
 ];
 
 const DESIGNED: [string, string, string][] = [
-  ["Naira first", "Your business is set up in NGN, and amounts are never mixed across currencies.", "Built in"],
-  ["Made for a phone", "Most founders here run everything from a phone, so every screen is designed for one.", "Built in"],
+  ["Naira first", "Your business is set up in naira, and amounts in different currencies are never mixed.", "Built in"],
+  ["Made for a phone", "Most sellers here run everything from a phone, so every screen is designed for one.", "Built in"],
+  ["Setup done for you", "You never configure a server, a DNS record or a payment gateway. That's our job.", "Built in"],
   ["Your own payment account", "Customers pay into your account. Launchmate does not hold your money.", "In progress"],
-  ["Your own address", "A free Launchmate address for your store, and a custom domain only if you want one.", "Early access"],
 ];
 
 const ROADMAP: [string, string[]][] = [
-  ["Today", ["Create your account", "Describe your idea and save your business plan", "Domain setup with an agent that never sees your password (early access)"]],
-  ["Next", ["Add products from your photos and notes", "Your storefront on your own address", "Real payments and orders"]],
-  ["Later", ["Customers and finances in one place", "Team access", "More countries and currencies"]],
+  ["Today", ["Create your account", "Set up your business in a few questions", "Add products with photos, prices and stock", "See what needs your attention"]],
+  ["Next", ["Your own address and domain", "Your storefront, live with one link", "Payments and orders"]],
+  ["Later", ["Customers and finances in one place", "Alerts by email or WhatsApp", "More countries and currencies"]],
 ];
 
 const FAQ: [string, string][] = [
-  ["Is Launchmate free?", "Yes. There is no subscription and no fee to create your business. The only paid extra is an optional custom domain, and its price is shown to you before you approve anything."],
-  ["Do I need technical skills?", "No. You describe your business in plain language and your agent does the setup. If something needs a decision, it asks you."],
-  ["Can the agent spend my money without asking?", "No. Anything that spends money waits for your approval, and each approval covers one exact amount. On top of that, you set a spending limit the agent cannot raise."],
-  ["Does the agent see my passwords?", "No. Logins are kept in Agent Vault. The agent only sees a placeholder, and Agent Vault types the real password into the website for it."],
+  ["Is Launchmate free?", "Yes. There is no subscription and no fee to create your business. The only paid extra is an optional custom domain, and you see its price before you approve anything."],
+  ["Do I need technical skills?", "No. You tell us what you sell and we handle the technical setup. If something needs a decision, we ask you in plain words."],
+  ["Can Launchmate spend my money without asking?", "No. Anything that costs money waits for your yes, and each yes covers one exact amount. You also set a spending limit that can't be raised without you."],
+  ["Is my password safe?", "Yes. When Launchmate needs to sign in somewhere for you, it uses a secure vault. Launchmate itself never sees your password, and the website gets it directly from the vault."],
   ["Who holds my customers' payments?", "You do. Payments are designed to go into your own payment account. Launchmate is not a bank and does not hold your balance."],
-  ["Where can I use it?", "Launchmate is built for Nigeria first. It is in early access, so some parts are available today and others are still being built. The Features and Where we are sections say which."],
+  ["How is this different from other store builders?", "Launchmate is built for sellers in Nigeria and does the technical setup for you, instead of handing you a toolbox. It is early, so it does less today than mature platforms. The Features and Where we are sections say exactly what works."],
+  ["Where can I use it?", "Launchmate is built for Nigeria first. It is in early access, so some parts are available today and others are still being built."],
 ];
 
 /* ───────────── helpers ───────────── */
@@ -132,14 +139,14 @@ export default function Landing() {
         <div style={{ ...css(wrap), height: "100%", display: "flex", alignItems: "center", gap: 28 }}>
           <Link href="/" style={css("display:flex;align-items:center;gap:10px;font-weight:600;font-size:17px;letter-spacing:-.01em;color:#202723;flex-shrink:0")}><LogoMark size={26} />Launchmate</Link>
           <nav style={css("flex:1;min-width:0;display:flex;gap:24px;font-size:14px;align-items:center;overflow:hidden;white-space:nowrap")}>
-            <a href="#why" style={css("color:#4C5550")}>Why</a>
-            <a href="#how" style={css("color:#4C5550")}>How it works</a>
-            <a href="#features" style={css("color:#4C5550")}>Features</a>
-            <a href="#faq" style={css("color:#4C5550")}>FAQ</a>
+            <a href="#why" className="hide-sm" style={css("color:#4C5550")}>Why</a>
+            <a href="#how" className="hide-sm" style={css("color:#4C5550")}>How it works</a>
+            <a href="#features" className="hide-sm" style={css("color:#4C5550")}>Features</a>
+            <a href="#faq" className="hide-sm" style={css("color:#4C5550")}>FAQ</a>
             <span style={css("flex:1")} />
             <Link href="/signin" style={css("color:#202723")}>Sign in</Link>
           </nav>
-          <Link href="/signup" className="hv-green" style={cta("font-size:14px;padding:10px 16px;flex-shrink:0;white-space:nowrap")}>Start your business</Link>
+          <Link href="/signup" className="hv-green" style={cta("font-size:14px;padding:10px 16px;flex-shrink:0;white-space:nowrap")}>Start your store</Link>
         </div>
       </header>
 
@@ -150,10 +157,10 @@ export default function Landing() {
             <div style={css("display:inline-flex;align-self:flex-start;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:#EEF6F0;color:#185C3B;font-size:13px;font-weight:500")}>
               <span style={css("width:6px;height:6px;border-radius:50%;background:#26734D")} />Early access · built for Nigeria
             </div>
-            <h1 style={css("margin:0;font-size:clamp(34px,4.3vw,62px);line-height:1.02;letter-spacing:-.035em;font-weight:600;text-wrap:balance")}>You bring the idea. We build the business.</h1>
-            <p style={css(lead)}>From your first product to your live storefront, Launchmate&apos;s AI business agent helps you build your online business and run it. Never without asking you first.</p>
+            <h1 style={css("margin:0;font-size:clamp(34px,4.3vw,62px);line-height:1.02;letter-spacing:-.035em;font-weight:600;text-wrap:balance")}>Start selling online. We handle the technical part.</h1>
+            <p style={css(lead)}>Launchmate sets up your store, your address and your products, then keeps an eye on things for you. No tech skills needed, and nothing important happens without your say-so.</p>
             <div style={css("display:flex;gap:10px;flex-wrap:wrap")}>
-              <Link href="/signup" className="hv-green" style={cta("font-size:15px;padding:13px 20px")}>Start your business</Link>
+              <Link href="/signup" className="hv-green" style={cta("font-size:15px;padding:13px 20px")}>Start your store</Link>
               <a href="#how" className="hv-grey" style={css("background:#FFFFFF;color:#202723;border:1px solid #E8ECE8;font-size:15px;font-weight:500;padding:13px 20px;border-radius:12px")}>See how it works</a>
             </div>
           </div>
@@ -183,8 +190,8 @@ export default function Landing() {
       <section id="why" style={{ ...section(), scrollMarginTop: 64 }}>
         <Reveal style={css("display:flex;flex-direction:column;gap:14px;max-width:700px;margin-bottom:clamp(28px,3.5vw,48px)")}>
           <span style={css(eyebrow)}>Why Launchmate</span>
-          <h2 style={css(h2)}>Starting an online business shouldn&apos;t take a team.</h2>
-          <p style={css(lead)}>Most first-time founders don&apos;t fail for lack of ideas. They stall on the setup. Launchmate is built to take that weight off you.</p>
+          <h2 style={css(h2)}>Selling online shouldn&apos;t need a tech team.</h2>
+          <p style={css(lead)}>Most sellers don&apos;t fail for lack of ideas. They stall on the setup. Launchmate takes that weight off you.</p>
         </Reveal>
         <div style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px")}>
           {PAINS.map(([t, d, n], k) => (
@@ -229,7 +236,7 @@ export default function Landing() {
             <div style={css("position:absolute;left:16px;right:16px;bottom:16px")}>
               <div key={step} style={css("background:#FFFFFF;border:1px solid #E8ECE8;border-radius:16px;padding:16px 18px;box-shadow:0 10px 30px rgba(32,39,35,.07);display:flex;flex-direction:column;gap:10px;animation:lmIn .4s ease-out")}>
                 <div style={css("display:flex;justify-content:space-between;align-items:center")}>
-                  <span style={css("font-size:12px;color:#78817B")}>{["Step 1 · You describe it", "Step 2 · Your plan takes shape", "Step 3 · You approve"][step]}</span>
+                  <span style={css("font-size:12px;color:#78817B")}>{["Step 1 · You tell us", "Step 2 · We set it up", "Step 3 · You approve"][step]}</span>
                   <Tag>Illustration</Tag>
                 </div>
                 {step === 0 && (
@@ -242,7 +249,7 @@ export default function Landing() {
                 )}
                 {step === 1 && (
                   <div style={css("display:flex;flex-direction:column;gap:7px")}>
-                    {["Business profile", "Brand direction", "Storefront draft", "Product listings"].map((t, k) => (
+                    {["Your store profile", "Your store address", "Your storefront", "Your product listings"].map((t, k) => (
                       <div key={t} style={css("display:flex;align-items:center;gap:10px;font-size:14px")}>
                         <span style={{ width: 16, height: 16, borderRadius: "50%", display: "grid", placeItems: "center", fontSize: 10, color: "#FFFFFF", background: k < 3 ? "#26734D" : "#FFFFFF", border: `1.5px solid ${k < 3 ? "#26734D" : "#D5DBD6"}` }}>{k < 3 ? "✓" : ""}</span>
                         <span style={{ color: k < 3 ? "#202723" : "#78817B" }}>{t}</span>
@@ -252,7 +259,7 @@ export default function Landing() {
                 )}
                 {step === 2 && (
                   <>
-                    <div style={css("display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:600")}><span>Register yourdomain.com</span><span style={css("font-size:11px;padding:3px 8px;border-radius:999px;background:#FBF3E6;color:#8A5E1C;font-weight:500")}>Needs your approval</span></div>
+                    <div style={css("display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:600")}><span>Register yourbrand.com.ng</span><span style={css("font-size:11px;padding:3px 8px;border-radius:999px;background:#FBF3E6;color:#8A5E1C;font-weight:500")}>Needs your approval</span></div>
                     <div style={css("display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;color:#5E6862")}>
                       <span>Price shown before you approve</span><span>Valid for this request only</span>
                       <span>Card details shared: none</span><span>You can reject</span>
@@ -265,20 +272,41 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* ── keeps an eye on things ── */}
+      <section id="watch" style={{ ...section("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(28px,4vw,64px);align-items:center"), scrollMarginTop: 64 }}>
+        <Reveal style={css("display:flex;flex-direction:column;gap:14px")}>
+          <span style={css(eyebrow)}>Peace of mind</span>
+          <h2 style={css(h2)}>Launchmate keeps an eye on things, so you don&apos;t have to.</h2>
+          <p style={css(lead)}>Stock running low. A product with no price. A picture missing. You see what needs you in one place, in plain words, instead of finding out from a customer.</p>
+        </Reveal>
+        <Reveal delay={150}>
+          <div style={css("background:#F8FAF8;border:1px solid #E8ECE8;border-radius:20px;padding:clamp(18px,2vw,24px);display:flex;flex-direction:column;gap:12px")}>
+            <div style={css("display:flex;justify-content:space-between;align-items:center")}><span style={css("font-size:13px;font-weight:600")}>Needs your attention</span><Tag>Example</Tag></div>
+            {WATCH.map(([t, d]) => (
+              <div key={t} style={css("display:flex;gap:12px;align-items:center;background:#FFFFFF;border:1px solid #E8ECE8;border-radius:14px;padding:12px 14px")}>
+                <span style={css("width:8px;height:8px;border-radius:50%;background:#C58B34;flex-shrink:0")} />
+                <span style={css("flex:1;display:flex;flex-direction:column;gap:2px")}><span style={css("font-size:14px;font-weight:500")}>{t}</span><span style={css("font-size:12px;color:#78817B")}>{d}</span></span>
+                <span style={css("font-size:12px;padding:6px 10px;border-radius:9px;border:1px solid #E8ECE8;color:#4C5550")}>Fix</span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
       {/* ── trust: the agent with limits ── */}
       <section id="trust" style={{ ...section("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(28px,4vw,64px);align-items:center"), scrollMarginTop: 64 }}>
         <Reveal style={css("display:flex;flex-direction:column;gap:22px")}>
           <div style={css("display:flex;flex-direction:column;gap:12px")}>
             <span style={css(eyebrow)}>Trust</span>
-            <h2 style={css(h2)}>Your agent works for you. You stay in charge.</h2>
-            <p style={css(lead)}>An agent that can act is only useful if it can&apos;t act without you. So the limits are built in, not promised.</p>
+            <h2 style={css(h2)}>Your store, your say.</h2>
+            <p style={css(lead)}>Launchmate does the work, but you stay in charge. The limits are built in, not just promised.</p>
           </div>
           <div style={css("display:flex;flex-direction:column;border-top:1px solid #E8ECE8")}>
             {[
-              ["Approval for anything that costs money", "Each approval covers one exact amount and expires."],
-              ["A spending limit it can't raise", "You set a cap per payment. The agent can ask, never override."],
-              ["Passwords stay hidden", "The agent sees a placeholder. Agent Vault types the real password into the site."],
-              ["Everything is visible", "See what the agent did, when and why."],
+              ["You approve anything that costs money", "Each approval covers one exact amount and expires."],
+              ["A spending limit you control", "Set a cap per payment. Launchmate can ask, but never override it."],
+              ["Your passwords stay private", "Launchmate signs in through a secure vault, so it never sees them."],
+              ["Everything is on record", "See what was done, when and why."],
             ].map(([t, d]) => (
               <div key={t} style={css("display:flex;flex-direction:column;gap:3px;padding:14px 0;border-bottom:1px solid #E8ECE8")}>
                 <span style={css("font-size:15px;font-weight:600")}>{t}</span>
@@ -292,9 +320,9 @@ export default function Landing() {
           <div style={css("background:#F8FAF8;border:1px solid #E8ECE8;border-radius:20px;padding:clamp(18px,2vw,24px);display:flex;flex-direction:column;gap:14px")}>
             <div style={css("display:flex;justify-content:space-between;align-items:center")}><span style={css("font-size:13px;font-weight:600")}>How a password stays safe</span><Tag>Illustration</Tag></div>
             {[
-              ["You store it once", "Typed by you into Agent Vault, never into Launchmate.", "••••••••••"],
-              ["The agent sees", "A placeholder that means nothing anywhere else.", "av_login_x7k2"],
-              ["The website receives", "The real password, typed in by Agent Vault at the last moment.", "signed in"],
+              ["You save it once", "Typed by you into a secure vault, never into Launchmate.", "••••••••••"],
+              ["Launchmate sees", "A placeholder that means nothing anywhere else.", "placeholder"],
+              ["The website receives", "The real password, typed in by the vault at the last moment.", "signed in"],
             ].map(([a, b, c], k) => (
               <div key={a} style={css("display:flex;align-items:center;gap:14px;background:#FFFFFF;border:1px solid #E8ECE8;border-radius:14px;padding:12px 14px")}>
                 <span style={css("width:26px;height:26px;border-radius:50%;background:#EEF6F0;color:#185C3B;display:grid;place-items:center;font-size:12px;font-weight:600;flex-shrink:0")}>{k + 1}</span>
@@ -311,7 +339,7 @@ export default function Landing() {
         <div style={section("display:flex;flex-direction:column;gap:clamp(28px,3vw,40px)")}>
           <Reveal style={css("display:flex;flex-direction:column;gap:12px;max-width:700px")}>
             <span style={css(eyebrow)}>Features</span>
-            <h2 style={css(h2)}>Everything a new business needs, run by one agent.</h2>
+            <h2 style={css(h2)}>Everything you need to sell, without the technical work.</h2>
             <p style={css(lead)}>Launchmate is in early access. Here is what works today and what we are building.</p>
           </Reveal>
           <div style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px")}>
@@ -335,7 +363,7 @@ export default function Landing() {
       <section style={section("display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(28px,4vw,64px);align-items:start")}>
         <Reveal style={css("display:flex;flex-direction:column;gap:14px")}>
           <span style={css(eyebrow)}>Designed for how you sell</span>
-          <h2 style={css(h2)}>Built around Nigerian founders, not copied from somewhere else.</h2>
+          <h2 style={css(h2)}>Built around Nigerian sellers, not copied from somewhere else.</h2>
           <p style={css(lead)}>Pricing in naira, phones as the main screen, and your money going into your own account. Not an afterthought, the starting point.</p>
         </Reveal>
         <div style={css("display:flex;flex-direction:column;border-top:1px solid #E8ECE8")}>
@@ -398,9 +426,9 @@ export default function Landing() {
       <section style={css("background:#F8FAF8;border-top:1px solid #E8ECE8;overflow:hidden")}>
         <div style={{ ...css(wrap), paddingTop: "clamp(72px,8vw,112px)", paddingBottom: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: 22, textAlign: "center" }}>
           <Reveal style={css("display:flex;flex-direction:column;align-items:center;gap:18px")}>
-            <h2 style={css("margin:0;font-size:clamp(34px,3.7vw,52px);line-height:1.05;letter-spacing:-.035em;font-weight:600;text-wrap:balance;max-width:760px")}>Your idea deserves a real business.</h2>
+            <h2 style={css("margin:0;font-size:clamp(34px,3.7vw,52px);line-height:1.05;letter-spacing:-.035em;font-weight:600;text-wrap:balance;max-width:760px")}>Your business deserves a real store.</h2>
             <p style={css("margin:0;font-size:18px;color:#5E6862")}>Start with a few questions. It takes about two minutes.</p>
-            <Link href="/signup" className="hv-green" style={cta("font-size:15px;padding:14px 24px")}>Start your business</Link>
+            <Link href="/signup" className="hv-green" style={cta("font-size:15px;padding:14px 24px")}>Start your store</Link>
           </Reveal>
           <div aria-hidden style={css("position:relative;width:min(100%,640px);aspect-ratio:1/0.62;container-type:size;margin-top:8px")}>
             <IsoScene size={74} offset={14} transform="rotateX(58deg) rotateZ(45deg)" sway={16}>
@@ -418,7 +446,7 @@ export default function Landing() {
             <Link href="/signup" style={css("color:#5E6862")}>Create account</Link>
             <a href="#faq" style={css("color:#5E6862")}>FAQ</a>
           </span>
-          <span>Built for first-time founders · Lagos and beyond</span>
+          <span>Built for Nigerian sellers · Lagos and beyond</span>
         </div>
       </footer>
     </div>

@@ -1,7 +1,7 @@
 export const NAV: { id: string; label: string; divider?: boolean }[] = [
   { id: "overview", label: "Overview" },
   { id: "products", label: "Products" },
-  { id: "agent-vault", label: "Domain setup" },
+  { id: "domain", label: "Domain" },
 ];
 
 /* ───────────── isometric "Business World" scene ───────────── */

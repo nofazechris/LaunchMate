@@ -7,7 +7,7 @@ const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono"
 
 export const metadata: Metadata = {
   title: "Launchmate",
-  description: "Describe your idea and watch your agent build the storefront, products and infrastructure.",
+  description: "Start selling online in Nigeria. Launchmate handles the technical setup for you: your store, your address and your products.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

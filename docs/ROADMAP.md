@@ -20,7 +20,7 @@ Rule while building: a screen only appears in the app once it runs on real data.
 
 ## B. Hackathon (deadline 7 Dec 09:00 GMT)
 1. About 0.062 CELO into the agent wallet, then `npm run erc8004:register` (dry run first).
-2. About $3 USDC/USDT/USAT into the Agent Vault wallet, one stored website login, `config/agentvault-site.json`, then the sign-in and one paid Buy call on `/agent-vault`.
+2. About $3 USDC/USDT/USAT into the Agent Vault wallet, one stored website login, `config/agentvault-site.json`, then the sign-in and one paid Buy call on `/admin/agent-vault`.
 3. Deploy on Vercel (see `docs/DEPLOY.md`), real domain, entry fields: demo URL, video, screenshot, logo, description, X handles, payout wallet, agent wallet, ERC-8004 id.
 4. **Named user** is 25% of the score. The owner chose not to name the merchant. Options that stay honest: ask the merchant again later, describe them without a name and accept the lost points, or use a different person who agrees to be named.
 5. Reply to the AskBots review issues on the repo (4 Dec round).

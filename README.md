@@ -2,7 +2,7 @@
 
 AI business-building agent: describe a business, upload your own stock, get a real online store, and run it from one place. Built for the Loops House *Agents Open for Business* hackathon on Celo.
 
-> **Honest status:** early access. Real today: landing page, sign-up/sign-in, guided onboarding that saves your business to Neon, Overview, Products (with photos and stock), and Domain setup through Agent Vault. Storefront, payments and the business agent are not built yet; see [docs/ROADMAP.md](docs/ROADMAP.md). No hackathon integration is *Verified* until a real mainnet transaction exists: see [docs/hackathon/COMPLIANCE.md](docs/hackathon/COMPLIANCE.md).
+> **Honest status:** early access. Real today: landing page, sign-up/sign-in, guided onboarding that saves your business to Neon, Overview with a live "needs your attention" list, Products (photos and stock), a store-address page, and an internal operator console for the Agent Vault integration (see docs/PRODUCT.md for the positioning: sellers never see the technical side). Storefront, payments and the business agent are not built yet; see [docs/ROADMAP.md](docs/ROADMAP.md). No hackathon integration is *Verified* until a real mainnet transaction exists: see [docs/hackathon/COMPLIANCE.md](docs/hackathon/COMPLIANCE.md).
 
 ## Stack
 Next.js 16 (App Router, TypeScript) · Neon PostgreSQL · Drizzle ORM · Better Auth · Zod · provider-agnostic AI layer (`lib/ai`) · Tailwind-free inline design tokens (prototype).

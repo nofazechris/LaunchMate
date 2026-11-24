@@ -32,7 +32,7 @@ export default function Shell({ children, userName, business }: { children: Reac
 
   return (
     <div style={css("display:flex;min-height:100vh;background:#F8FAF8")}>
-      <aside style={css("width:236px;flex-shrink:0;background:#FFFFFF;border-right:1px solid #E8ECE8;display:flex;flex-direction:column;padding:16px 12px;gap:18px;position:sticky;top:0;height:100vh")}>
+      <aside className="app-side" style={css("width:236px;flex-shrink:0;background:#FFFFFF;border-right:1px solid #E8ECE8;display:flex;flex-direction:column;padding:16px 12px;gap:18px;position:sticky;top:0;height:100vh")}>
         <Link href="/overview" style={css("display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px;padding:6px 8px;color:#202723")}>
           <LogoMark />Launchmate
         </Link>
@@ -72,12 +72,21 @@ export default function Shell({ children, userName, business }: { children: Reac
         </div>
       </aside>
 
-      <main style={css("flex:1;min-width:0;display:flex;flex-direction:column")}>
-        <div style={css("height:60px;border-bottom:1px solid #E8ECE8;background:#FFFFFF;display:flex;align-items:center;padding:0 28px;gap:14px;position:sticky;top:0;z-index:10")}>
-          <span style={css("font-size:15px;font-weight:600")}>{title}</span>
+      <main className="app-main" style={css("flex:1;min-width:0;display:flex;flex-direction:column")}>
+        <div className="app-top" style={css("height:60px;border-bottom:1px solid #E8ECE8;background:#FFFFFF;display:flex;align-items:center;padding:0 28px;gap:14px;position:sticky;top:0;z-index:10")}>
+          <span className="only-mobile" style={css("align-items:center")}><LogoMark /></span>
+          <span style={css("font-size:15px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap")}>{title || business.name}</span>
+          <span style={css("flex:1")} />
+          <button className="only-mobile" onClick={signOut} style={css("background:none;border:none;font-size:13px;color:#78817B;cursor:pointer;padding:6px")}>Sign out</button>
         </div>
         {children}
       </main>
+      <nav className="tabbar" aria-label="Main">
+        {NAV.map((n) => {
+          const active = page === n.id;
+          return <Link key={n.id} href={`/${n.id}`} aria-current={active ? "page" : undefined} style={{ background: active ? "#EEF6F0" : "transparent", color: active ? "#185C3B" : "#4C5550", fontWeight: active ? 600 : 400 }}>{n.label}</Link>;
+        })}
+      </nav>
     </div>
   );
 }

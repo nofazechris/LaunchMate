@@ -40,3 +40,22 @@ html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 details > summary { list-style: none; }
 details > summary::-webkit-details-marker { display: none; }
+
+/* dashboard shell: sidebar on desktop, bottom tab bar on phones */
+.only-mobile { display: none !important; }
+.tabbar { display: none; }
+@media (max-width: 820px) {
+  .app-side { display: none !important; }
+  .only-mobile { display: flex !important; }
+  .app-main { padding-bottom: 68px; }
+  .app-main > :not(.app-top) { padding: 16px !important; }
+  .app-top { padding: 0 16px !important; }
+  .tabbar {
+    display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+    background: #FFFFFF; border-top: 1px solid #E8ECE8;
+    padding: 6px 8px calc(6px + env(safe-area-inset-bottom));
+  }
+  .tabbar a { flex: 1; text-align: center; padding: 10px 6px; border-radius: 10px; font-size: 13px; }
+}
+
+@media (max-width: 640px) { .hide-sm { display: none !important; } }

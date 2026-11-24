@@ -47,3 +47,19 @@ test("images: refuses SVG, GIF, HTML, scripts and truncated files", () => {
   assert.equal(sniffImage(new Uint8Array([0xff, 0xd8])), null);
   assert.equal(sniffImage(new Uint8Array(0)), null);
 });
+
+import { normalizeDomain } from "../lib/domain.ts";
+
+test("domain: cleans what sellers actually type", () => {
+  assert.equal(normalizeDomain("mybrand.com"), "mybrand.com");
+  assert.equal(normalizeDomain("  MyBrand.com.ng  "), "mybrand.com.ng");
+  assert.equal(normalizeDomain("https://www.MyBrand.com/shop?x=1"), "mybrand.com");
+  assert.equal(normalizeDomain("www.ada-clothing.store."), "ada-clothing.store");
+  assert.equal(normalizeDomain("shop.mybrand.ng:8080"), "shop.mybrand.ng");
+});
+
+test("domain: refuses things that are not domains", () => {
+  for (const bad of ["", "mybrand", "my brand.com", "-bad.com", "bad-.com", "a..com", "http://", "mybrand.c", "mybrand.123", "javascript:alert(1)", "x".repeat(300) + ".com", "under_score.com"]) {
+    assert.equal(normalizeDomain(bad), null, `"${bad.slice(0, 30)}" should be refused`);
+  }
+});
