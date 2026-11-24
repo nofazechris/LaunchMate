@@ -9,13 +9,13 @@ Status words: **Not started · In progress · Implemented (untested) · Verified
 - [x] Attribution tag obtained — `celo_b02f2c0e5298` (confirmed against the platform via `loops project get`)
 - [x] Tag wired into the single tx-construction path *before* first tx — **Implemented + unit-tested; not yet verified on mainnet**
 - [ ] Celo mainnet config (chain 42220) — **Not started**
-- [ ] Agent wallet created securely — **Not started** (owner holds keys)
+- [x] Agent wallet created securely — `0x387c6EE644f472569d773a4FA9bB047007B9bB08` (owner holds the key; **unfunded**, balance 0 CELO)
 - [ ] ERC-8004 registration confirmed and independently verified on 8004scan — **Not started**
 - [ ] x402 PayTo address registered (if selling a service) — **Not started**
 - [x] Evidence docs started — this directory
 
 ## P1 — Self Agent ID (primary)
-- [ ] Docs read: https://docs.self.xyz/docs/agent-id/overview — **Not started**
+- [x] Docs read (overview, registration modes, supported countries) — **Done; 3 open questions in SELF_AGENT_ID.md**
 - [ ] Human-owner verification established — **Not started** (owner's own ID)
 - [ ] Protected service whose access decision checks Self status — **Not started**
 - [ ] x402 payment gating — **Not started**
