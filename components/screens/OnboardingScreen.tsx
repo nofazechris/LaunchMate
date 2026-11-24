@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { css } from "@/lib/css";
-import { CTX, PRODUCTS, QS } from "@/lib/data";
+import { boxes, CTX, PRODUCTS, QS } from "@/lib/data";
+import { IsoBoxes, IsoScene } from "@/components/Iso";
 import { LogoMark } from "@/components/Logo";
 import { useLaunchmate } from "@/components/LaunchmateProvider";
 
@@ -21,6 +22,11 @@ export default function OnboardingScreen() {
   const showBlueprint = !asking && !typing;
   const filled = CTX.filter(([k]) => a[k]).length;
   const pct = Math.round((filled / CTX.length) * 100);
+  // The plot grows with what has actually been answered: nothing -> idea -> identity -> storefront draft.
+  // (It is a picture of the plan, not a built store.)
+  const stage = !filled ? 0 : filled < 3 ? 1 : filled < CTX.length || !showBlueprint ? 2 : 3;
+  const scene = useMemo(() => boxes(stage, null), [stage]);
+  const stageLabel = ["Empty plot", "Idea", "Identity", "Storefront draft"][stage];
 
   const blueprint: [string, string][] = [
     ["Business name", a.name || "Adire & Co."], ["Category", a.cat || "Fashion & apparel"],
@@ -101,6 +107,12 @@ export default function OnboardingScreen() {
         </div>
 
         <aside style={css("border-left:1px solid #E8ECE8;background:#F8FAF8;padding:28px 22px;display:flex;flex-direction:column;gap:18px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto")}>
+          <div aria-hidden style={css("position:relative;flex-shrink:0;aspect-ratio:1/0.82;background:#FFFFFF;border:1px solid #E8ECE8;border-radius:16px;overflow:hidden;container-type:size")}>
+            <IsoScene size={62} offset={8} transform="rotateX(58deg) rotateZ(45deg)" sway={14}>
+              <IsoBoxes boxes={scene} variant="build" />
+            </IsoScene>
+            <span style={css("position:absolute;left:12px;top:10px;font-size:12px;color:#5E6862;background:#FFFFFF;padding:3px 10px;border-radius:999px;border:1px solid #E8ECE8;white-space:nowrap")}>Your plot · {stageLabel}</span>
+          </div>
           <div style={css("display:flex;flex-direction:column;gap:10px")}>
             <div style={css("display:flex;justify-content:space-between;font-size:13px")}><span style={css("font-weight:600")}>Your business</span><span style={css("color:#78817B")}>{pct}% complete</span></div>
             <div style={css("height:6px;border-radius:999px;background:#E4E9E5;overflow:hidden")}>
