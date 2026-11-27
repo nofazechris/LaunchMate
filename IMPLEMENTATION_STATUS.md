@@ -1,4 +1,4 @@
-# Implementation status (24 Nov 2026)
+# Implementation status (27 Nov 2026)
 
 Statuses: Designed · Implemented · Configured · Tested · Production verified. "Tested" means run end-to-end, not type-checked.
 
@@ -14,22 +14,22 @@ Statuses: Designed · Implemented · Configured · Tested · Production verified
 | Public storefront (/s/<slug>) | Real: home, product pages with photo gallery, cart in the visitor's browser, order request checkout. Closed stores are invisible to the public; the owner sees a preview. The open/closed check runs in every page (a layout cannot hide page data in Next.js: found and fixed by the test) | Browser + storefront end-to-end script against the real database | Not yet on a custom domain or subdomain |
 | Orders (seller) | Real: order requests with server-computed totals, WhatsApp link, status flow new → contacted → fulfilled/cancelled; fulfilling takes stock out atomically and all-or-nothing | End-to-end script | No payments yet: nobody is charged, the seller arranges payment |
 | Payments, customers, finances, business agent | Not built. Nothing fake is shown | – | Paystack account |
-| Neon database + Drizzle schema + migration `0000` | Implemented | Migration generated; **never applied** | Needs `DATABASE_URL` |
-| Authentication (Better Auth on Neon) | Implemented end to end in code: real /signup and /signin, session guard on onboarding and dashboard | Redirects verified; sign-up needs the database | `DATABASE_URL` (Neon) + `npm run db:migrate` |
-| Business workspace API (`/api/businesses`) | Implemented | No | Needs DB + auth |
-| Tenant authz helper | Implemented | No | Needs DB; cross-business test not written |
+| Neon database + Drizzle schema | Migrations `0000`–`0002` applied | Used by the end-to-end scripts | – |
+| Authentication (Better Auth on Neon) | Real sign-up, sign-in and session guard | Browser and end-to-end scripts | Email verification and password reset need an email provider |
+| Business workspace API (`/api/businesses`) | Real | Browser onboarding and end-to-end scripts | – |
+| Tenant isolation | Every seller route is scoped to the signed-in owner's business | End-to-end scripts: another user gets 404 | – |
 | AI provider abstraction | Implemented | No | No provider/key chosen |
 | AI agent, onboarding extraction, tools | Not started | – | AI provider |
 | Product intake (text/voice/photo) | Not started | – | AI provider, object storage |
-| Store generation, editor, hosted subdomain | Not started | – | – |
-| Paystack, orders, webhooks | Not started | – | Paystack account |
+| Store design editor, subdomain per store | Not built (stores live at `/s/<slug>`) | – | Domain |
+| Paystack payments and webhooks | Not built | – | Paystack account |
 | Domains | Not started | – | Registrar access |
 | Finance | Not started | – | – |
 | ERC-8004 | Implemented (script + agent file) | Dry run vs real registry; nothing sent | ~0.062 CELO gas in agent wallet |
-| Self Agent ID (service gate) | Implemented | Denied path tested (mainnet reads); served path not | Owner passport scan to create a registered agent |
+| Self Agent ID (service gate; track not claimed) | Implemented | Offline tests plus an opt-in live registry check; the served path with a real agent is untested | Chip passport |
 | Agent Vault | Implemented (module, routes, page) | 16 tests; live read-only calls; no sign-in or payment yet | Stored website login; ~$3 stablecoin in Agent Vault wallet |
 | x402 seller | Implemented (`withX402`) | Not exercised | PayTo address, facilitator API key, funded buyer |
 | Celo attribution | Implemented | Unit-tested (signed tx calldata decoded); not verified on mainnet | First mainnet tx (tag itself confirmed by platform) |
-| Textile FX / Altana | Deferred | – | – |
+| Textile FX / Altana | Not implemented, not entered | – | – |
 
 Hackathon-specific status lives in `docs/hackathon/COMPLIANCE.md`.

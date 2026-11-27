@@ -8,11 +8,13 @@ O="origin: $B"; J="content-type: application/json"
 D=$(cygpath -m "$(mktemp -d)" 2>/dev/null || mktemp -d); A=$D/a.txt; Bc=$D/b.txt
 FAILS=0; PASSES=0
 ok(){ if [ "$2" = "$3" ]; then PASSES=$((PASSES+1)); echo "  PASS  $1 ($3)"; else FAILS=$((FAILS+1)); echo "  FAIL  $1: expected $2 got $3"; fi; }
-has(){ if echo "$3" | grep -qi -- "$2"; then PASSES=$((PASSES+1)); echo "  PASS  $1"; else FAILS=$((FAILS+1)); echo "  FAIL  $1 (missing: $2)"; fi; }
+has(){ if echo "$3" | grep -qi -- "$2"; then PASSES=$((PASSES+1)); echo "  PASS  $1"; else FAILS=$((FAILS+1)); echo "  FAIL  $1 (missing: $2) got: $(echo "$3" | head -c 200)"; fi; }
 hasnt(){ if echo "$3" | grep -qi -- "$2"; then FAILS=$((FAILS+1)); echo "  FAIL  $1 (should not contain: $2)"; else PASSES=$((PASSES+1)); echo "  PASS  $1"; fi; }
 code(){ curl -s -o /dev/null -w '%{http_code}' "$@"; }
 idof(){ echo "$1" | sed -E 's/.*"id":"([0-9a-f-]{36})".*/\1/'; }
-n=0; ip(){ n=$((n+1)); echo "x-forwarded-for: 10.9.$n.$((RANDOM%250+1))"; }
+# A different pretend address per request, so the rate limiter only fires where we test it.
+# The counter lives in a file because ip() runs in a subshell.
+ip(){ local n; n=$(cat "$D/ipn" 2>/dev/null || echo 0); n=$((n+1)); echo "$n" > "$D/ipn"; echo "x-forwarded-for: 10.9.$((n/250)).$((n%250+1))"; }
 
 printf '\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x00\x00\x01\x00\x01\x00\x00' > $D/ok.jpg; head -c 3000 /dev/urandom >> $D/ok.jpg
 

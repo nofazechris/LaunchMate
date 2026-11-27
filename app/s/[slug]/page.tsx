@@ -22,7 +22,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       {items.length === 0 ? (
         <p style={css("color:#78817B")}>Nothing here yet. Check back soon.</p>
       ) : (
-        <div style={css("display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:clamp(14px,2vw,24px)")}>
+        <div style={css("display:grid;grid-template-columns:repeat(auto-fill,minmax(min(45%,230px),1fr));gap:clamp(12px,2vw,24px)")}>
           {items.map((p) => {
             const soldOut = p.productType === "physical" && p.quantityOnHand === 0;
             return (
@@ -36,7 +36,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                   )}
                   {soldOut && <span style={css("position:absolute;left:10px;top:10px;font-size:12px;padding:4px 10px;border-radius:999px;background:#FFFFFF;color:#5E6862;font-weight:500")}>Sold out</span>}
                 </div>
-                <div style={css("display:flex;justify-content:space-between;gap:10px;align-items:baseline")}>
+                <div style={css("display:flex;justify-content:space-between;gap:2px 10px;align-items:baseline;flex-wrap:wrap")}>
                   <span style={css("font-size:15px;font-weight:500;line-height:1.3")}>{p.name}</span>
                   <span style={css("font-family:var(--font-mono);font-size:14px;white-space:nowrap")}>{formatMinor(p.priceMinor, p.currency)}</span>
                 </div>

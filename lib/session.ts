@@ -1,6 +1,6 @@
 import "server-only";
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
+import { redirect, unstable_rethrow } from "next/navigation";
 import { auth } from "@/lib/auth";
 
 /**
@@ -14,6 +14,7 @@ export async function requireSession() {
   try {
     session = await auth.api.getSession({ headers: await headers() });
   } catch (e) {
+    unstable_rethrow(e); // let Next.js internals (dynamic rendering, redirects) pass through
     failed = true;
     console.error("session lookup failed", e instanceof Error ? e.message : e);
   }

@@ -1,13 +1,13 @@
 # Track selection
 
-A project can win at most **two** tracks. We commit to two and do not dilute them.
+A project can win at most two tracks. **Launchmate is entering one: Agent Vault.** The other three are not claimed. Nothing is verified on mainnet yet.
 
 | Track | Decision | Why |
 |---|---|---|
 | Self Agent ID — Verified Agent Payments | **Blocked** | Needs a chip passport; owner cannot obtain one before 7 Dec. Gate code kept; track not claimed unless organizers say otherwise |
 | Agent Vault — Online & Onchain Checkouts | **Primary (switched 24 Nov)** | Website sign-in without seeing the password + a real x402 payment; no Self registration needed (**confirmed by admins 24 Nov 2026**: Self field is only required for the Self track) |
-| Altana Agent Wallets | Deferred | Needs a real onchain session-key; do not simulate caps in app code |
-| Stablecoin Corridors (Textile FX) | Deferred | Needs a tagged mainnet cNGN conversion paid to an outside recipient |
+| Altana Agent Wallets | Not implemented, not entered | Needs a real onchain session-key; do not simulate caps in app code |
+| Stablecoin Corridors (Textile FX) | Not implemented, not entered | Needs a tagged mainnet cNGN conversion paid to an outside recipient |
 
 Judging (published): Self Agent ID and Agent Vault — integration quality 30%, innovation/value 30%, named user + real job 25%, real use 15%.
 

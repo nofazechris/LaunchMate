@@ -1,9 +1,9 @@
 # What is left to finish Launchmate
 
-Honest as of 24 Nov 2026. "Real" means backed by the database and tested end to end.
+Honest as of 27 Nov 2026. "Real" means backed by the database and tested end to end.
 
 ## Real today
-Landing page · account sign-up/sign-in · guided onboarding (saves progress on the device, then the business and your answers to the database) · Overview from real data · **Products** (add, edit, photos, stock with history, publish/archive/delete) · Domain setup with Agent Vault (owner token; needs a stored login and funded wallet to do real work) · session guards · tenant-safe business API.
+Landing page · account sign-up/sign-in · guided onboarding (saves progress on the device, then the business and your answers to the database) · Overview from real data · **Products** (add, edit, photos, stock with history, publish/archive/delete) · public storefront with order requests · seller Orders page · operator page for Agent Vault (owner token; no sign-in or payment made yet) · session guards · tenant-safe business API.
 
 ## A. The product people will use (in order)
 | # | Piece | Size | Needs from the owner |
@@ -28,8 +28,7 @@ Rule while building: a screen only appears in the app once it runs on real data.
 ## C. Before real customers
 Tests for tenant isolation across every route · rate limiting on auth · security headers · error monitoring · database backups (and a separate Neon project from the other app's tables) · privacy policy and terms pages · accessibility pass.
 
-## Suggested order for the next two weeks
-1. Hackathon funding steps (B1, B2) the day the money is available.
-2. Products (A1) then the public storefront (A2): this is what makes the product real to a merchant.
-3. Deploy (B3) as soon as A2 exists, so the demo URL shows a real store.
-4. Payments (A3) once the Paystack account is ready; the agent (A5) once an AI key exists.
+## Suggested order
+1. Deploy (B3) now: products and stores work, so the demo URL shows a real store.
+2. Hackathon funding steps (B1, B2) the day the money is available.
+3. Payments (A3) once the Paystack account is ready; the agent (A5) once an AI key exists.

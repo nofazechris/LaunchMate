@@ -1,6 +1,6 @@
-# Altana (deferred)
+# Altana (not implemented, not entered)
 
-**Status: Deferred**
+**Status: Not implemented. Launchmate has no Altana code and is not entering this track.**
 
 Only enter with a real onchain session key (cap, contract allowlist, expiry, one-tx revoke). No app-level simulation.
 

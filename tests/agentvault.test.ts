@@ -34,7 +34,7 @@ test("payment ceiling: defaults to $0.10 and rejects nonsense config", () => {
 });
 
 // ── Real calls to Agent Vault (read-only; no browser, no payment). Skipped without an API key. ──
-const live = { skip: !process.env.SELF_AGENT_PAY_API_KEY && "SELF_AGENT_PAY_API_KEY not set" };
+const live = { skip: (process.env.RUN_LIVE_TESTS !== "1" || !process.env.SELF_AGENT_PAY_API_KEY) && "needs network and an Agent Vault key: run `npm run test:live`" };
 
 test("LIVE: Agent Vault accepts our key and reports wallet / login readiness", live, async () => {
   const s = await getVaultStatus();

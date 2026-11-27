@@ -35,8 +35,8 @@ const CAPS: [string, string, Status][] = [
   ["Set up for you", "Answer a few questions and your business profile is created. Change anything, any time.", "Available"],
   ["Your products, your photos", "Add what you sell with prices, stock and photos. Every stock change is recorded, so you never lose count.", "Available"],
   ["Keeps an eye on things", "Spots low stock, missing prices and missing photos, and tells you what needs your attention.", "Available"],
-  ["Your own address", "A free Launchmate address for your store, and your own domain if you want one. We handle the setup.", "In progress"],
-  ["A store that sells", "A fast, mobile-first storefront built from tested templates, ready to share with one link.", "In progress"],
+  ["A store you can share", "A mobile-first storefront at one link. Customers browse, fill a cart and send you an order request.", "Available"],
+  ["Your own domain", "An address like yourbrand.com.ng, if you want one. We handle the setup.", "In progress"],
   ["Payments that go to you", "Customers pay into your own account. An order counts as paid only when the payment provider confirms it.", "In progress"],
 ];
 
@@ -54,8 +54,8 @@ const DESIGNED: [string, string, string][] = [
 ];
 
 const ROADMAP: [string, string[]][] = [
-  ["Today", ["Create your account", "Set up your business in a few questions", "Add products with photos, prices and stock", "See what needs your attention"]],
-  ["Next", ["Your own address and domain", "Your storefront, live with one link", "Payments and orders"]],
+  ["Today", ["Create your account", "Set up your business in a few questions", "Add products with photos, prices and stock", "Open your store and share one link", "Receive order requests", "See what needs your attention"]],
+  ["Next", ["Your own domain", "Card and bank payments in your store"]],
   ["Later", ["Customers and finances in one place", "Alerts by email or WhatsApp", "More countries and currencies"]],
 ];
 

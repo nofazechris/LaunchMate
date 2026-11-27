@@ -28,7 +28,7 @@ export const businessStatus = pgEnum("business_status", ["draft", "building", "l
 export const businesses = pgTable("businesses", {
   id: id(),
   name: text("name").notNull(),
-  /** Free hosted subdomain: <slug>.<STOREFRONT_BASE_DOMAIN> */
+  /** Public store address: /s/<slug> (a subdomain per store is not built yet). */
   slug: text("slug").notNull(),
   status: businessStatus("status").notNull().default("draft"),
   category: text("category"),

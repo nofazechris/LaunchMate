@@ -54,14 +54,13 @@ export default async function Page() {
   const steps: Step[] = [
     { title: "Your business is set up", note: "Your details are saved and you can change them any time.", state: "done" },
     { title: live.length > 0 ? `Add more products (${live.length} so far)` : "Add your products", note: "What you sell, with photos, prices and stock.", state: live.length > 0 ? "done" : "ready", href: "/products" },
-    { title: "Choose your store address", note: "Your free address is reserved. You can ask for your own domain too.", state: hasDomainChoice ? "done" : "ready", href: "/domain" },
+    { title: "Choose your store address", note: "You have a free store link. You can ask for your own domain too.", state: hasDomainChoice ? "done" : "ready", href: "/domain" },
     { title: isOpen ? "Your store is open" : "Open your store", note: isOpen ? "Share your store link with customers." : "Share one link and start selling.", state: isOpen ? "done" : published.length > 0 ? "ready" : "soon", href: "/store" },
     { title: "Take payments in the store", note: "Customers pay into your own account. Coming soon. Until then, customers send order requests and you arrange payment.", state: "soon" },
   ];
   const chip = { done: ["Done", "#E9F4EE", "#1F6B43"], ready: ["Ready", "#EAF2F8", "#2F6A92"], soon: ["Soon", "#F3F5F2", "#78817B"] } as const;
 
   const first = user.name.trim().split(/\s+/)[0];
-  const base = process.env.STOREFRONT_BASE_DOMAIN;
   const scene = boxes(live.length > 0 ? 3 : 1, null);
 
   return (
@@ -83,7 +82,7 @@ export default async function Page() {
             <div style={css("display:flex;flex-direction:column;gap:2px")}><span style={css("color:#78817B")}>Products</span><span style={css("font-family:var(--font-mono)")}>{live.length}</span></div>
           </div>
           <div style={css("font-size:13px;color:#5E6862;line-height:1.5;padding-top:10px;border-top:1px solid #F0F2F0")}>
-            Your store address: <span style={css("font-family:var(--font-mono);color:#202723")}>{base ? `${business.slug}.${base}` : business.slug}</span>
+            Your store link: <Link href={`/s/${business.slug}`} style={css("font-family:var(--font-mono);color:#202723;word-break:break-all")}>/s/{business.slug}</Link>
           </div>
         </div>
 

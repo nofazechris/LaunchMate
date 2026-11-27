@@ -16,7 +16,8 @@ export default async function Page() {
   const [mem] = await db.select({ value: agentMemory.value }).from(agentMemory)
     .where(and(eq(agentMemory.businessId, business.id), eq(agentMemory.key, "preferred_domain"))).limit(1);
   const saved = (mem?.value as { domain?: string } | undefined)?.domain ?? null;
-  const base = process.env.STOREFRONT_BASE_DOMAIN;
+  const path = `/s/${business.slug}`;
+  const open = business.status === "live";
 
   return (
     <div style={css("padding:28px;display:flex;flex-direction:column;gap:16px;max-width:760px;width:100%;animation:lmIn .35s ease-out")}>
@@ -27,11 +28,11 @@ export default async function Page() {
 
       <div style={css(card)}>
         <div style={css("display:flex;justify-content:space-between;align-items:center;gap:8px")}>
-          <span style={css("font-size:15px;font-weight:600")}>Free Launchmate address</span>
-          <span style={css("font-size:12px;padding:3px 9px;border-radius:999px;background:#FBF3E6;color:#8A5E1C;font-weight:500")}>Reserved</span>
+          <span style={css("font-size:15px;font-weight:600")}>Free Launchmate link</span>
+          <span style={css("font-size:12px;padding:3px 9px;border-radius:999px;background:#FBF3E6;color:#8A5E1C;font-weight:500")}>{open ? "Open" : "Not open yet"}</span>
         </div>
-        <span style={css("font-family:var(--font-mono);font-size:16px")}>{base ? `${business.slug}.${base}` : business.slug}</span>
-        <span style={css("font-size:13px;color:#5E6862;line-height:1.5")}>This is yours at no cost. It starts working when your store goes live, which isn&apos;t available yet.</span>
+        <a href={path} style={css("font-family:var(--font-mono);font-size:16px;color:#202723;word-break:break-all")}>{path}</a>
+        <span style={css("font-size:13px;color:#5E6862;line-height:1.5")}>{open ? "This is yours at no cost. Customers can visit it now." : "This is yours at no cost. Only you can see it until you open your store."}</span>
       </div>
 
       <div style={css(card)}>

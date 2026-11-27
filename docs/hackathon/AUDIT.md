@@ -1,5 +1,7 @@
 # Implementation audit — 24 Nov 2026
 
+> Historical: written before the build started. The current track choice is in [TRACKS.md](TRACKS.md) and current status in [COMPLIANCE.md](COMPLIANCE.md).
+
 Source of truth for rules: https://www.loops.house/agents-open-for-business (read 24 Nov 2026). Track pages and sponsor docs still need to be read before each integration (see TRACKS.md).
 
 ## 1. What exists

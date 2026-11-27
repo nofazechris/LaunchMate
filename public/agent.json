@@ -1,7 +1,7 @@
 {
   "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
   "name": "Launchmate",
-  "description": "AI business agent that helps small merchants in Nigeria set up and run an online store. It signs in to the merchant's accounts through Agent Vault without ever seeing a password, and pays for data services over x402 within spending limits the owner sets.",
+  "description": "Launchmate helps small sellers in Nigeria open and run an online store: products, stock, a public storefront and order requests. In development: signing in to a seller's accounts through Agent Vault without seeing the password, and x402 payments within a limit the owner sets.",
   "services": [
     {
       "name": "web",

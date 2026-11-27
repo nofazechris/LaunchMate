@@ -1,6 +1,7 @@
 import "server-only";
 import { cache } from "react";
 import { headers } from "next/headers";
+import { unstable_rethrow } from "next/navigation";
 import { and, asc, desc, eq, isNotNull } from "drizzle-orm";
 import { db } from "@/db";
 import { businesses, productAssets, products } from "@/db/schema";
@@ -25,7 +26,8 @@ export const viewerOwns = cache(async (businessId: string): Promise<boolean> => 
     if (!session) return false;
     const mine = await getBusinessForUser(session.user.id);
     return mine?.id === businessId;
-  } catch {
+  } catch (e) {
+    unstable_rethrow(e); // never swallow Next.js internals
     return false;
   }
 });

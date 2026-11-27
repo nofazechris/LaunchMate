@@ -2,6 +2,7 @@
   "name": "launchmate",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,13 +10,15 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "typecheck": "tsc --noEmit",
-    "test": "node --env-file-if-exists=.env.local --test --test-timeout=60000 tests/*.test.ts",
+    "test": "node --import tsx --test tests/*.test.ts",
     "wallet:generate": "node scripts/generate-agent-wallet.mjs",
     "self:register": "node scripts/register-self-agent.mjs",
     "av:check": "node --env-file=.env.local scripts/agentvault-check.mjs",
     "erc8004:register": "node --env-file=.env.local scripts/register-erc8004.mjs",
     "e2e:products": "bash scripts/e2e/products.sh",
-    "e2e:cleanup": "node --env-file=.env.local scripts/e2e/cleanup-test-data.mjs"
+    "e2e:cleanup": "node --env-file=.env.local scripts/e2e/cleanup-test-data.mjs",
+    "test:offline": "node --import tsx --import ./tests/helpers/block-network.mjs --test tests/*.test.ts",
+    "test:live": "node --import tsx --import ./tests/helpers/live.mjs --test tests/*.test.ts"
   },
   "dependencies": {
     "@agentvault/playwright": "https://app.agentvault.io/sdk/agentvault-playwright.tgz",
@@ -39,6 +42,10 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "drizzle-kit": "^0.31.11",
+    "tsx": "^4.23.15",
     "typescript": "^7.0.2"
+  },
+  "engines": {
+    "node": ">=20.9"
   }
 }
